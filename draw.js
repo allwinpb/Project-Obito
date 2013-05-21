@@ -1,5 +1,8 @@
 
-var canvas = new fabric.Canvas('canvas');
-canvas.isDrawingMode = true;
-canvas.freeDrawingColor = #00000;
-canvas.freeDrawingLineWidth = 2;
+function init(){
+	var canvas = new fabric.Canvas('canvas');
+	canvas.isDrawingMode = true;
+	canvas.freeDrawingLineWidth = 2;
+}
+
+

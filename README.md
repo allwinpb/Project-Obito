@@ -1,4 +1,9 @@
 Project-Obito
 =============
 
-The super secret project which has a super public repository coz we so poor.
+HTML5 based chat room with support for doodles.
+
+What is done so far
+-------------------
+
++Nothing 
