@@ -6,4 +6,5 @@ HTML5 based chat room with support for doodles.
 What is done so far
 -------------------
 
-+Nothing 
++Fabric.js integrated though hidden
++Rudimentary UI in progress

@@ -1,31 +1,91 @@
 #header{
 	height:6em;
-	background-color: #33FFDD;
-	border:1px solid #33FFDD;
+	background-color: #000000;
+	border-radius: 25px 25px 0px 0px;
 }
 
+#footer{
+	height:6em;
+	background-color: #000000;
+	border-radius: 0px 0px 25px 25px;
+
+}
+
+#main{
+	background-color: #FFFFFF;
+	padding: 10px;
+}
+
+#chat-window{
+}
+
+#chat-log{
+	margin-bottom: 10px;
+	width: auto;
+	height: 12em;
+	font-family: arial;
+	text-align: left;
+	overflow: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px solid #999999;
+	padding: 3px;
+}
+
+#chat-editor{
+	height: 4em;
+	width:100%;
+}
+
+#chat-editor-mode{
+	height:100%;
+	/*display: inline-block;*/
+	float: left;
+	width: 390px;
+
+}
 #header-text{
 	line-height: 6em;
-	margin-left: 50;
-	font-size: 16;
-	font-family: "Arial Black";
+	font-size: 20;
+	font-family: "Courier New";
+	color: #FFFFFF;
 }
 
-#canvas-container{
-	border:1px solid #000000;
-}
 
-#clear-button{
-}
 
-#ui{
+body{
 	text-align: center;
-}
-
-.frame{
+	background-color: #666666;
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:5;
-	margin-bottom:5;
+	margin-top:15;
+	margin-bottom:15;
 	width:500;
 }
+
+textarea{
+	resize:none;
+	width:100%;
+	height:100%;
+	font-family: "Verdana";
+}
+/*Submit Button*/
+.btn-submit {
+	background-color:#ededed;
+	display:inline-block;
+	line-height: 4em;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	height:100%;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-decoration:none;
+}.btn-submit:hover {
+	background-color:#dfdfdf;
+}.btn-submit:active {
+	background-color:#cfcfcf;
+}
+

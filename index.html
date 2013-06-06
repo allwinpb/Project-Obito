@@ -2,10 +2,8 @@
 <head>
 	<title>Project Obito Prelim</title>
 	<link rel="stylesheet" href="style.css"/>
-	<script type="text/javascript" src="all.min.js">
-	</script>
-	<script type="text/javascript" src="draw.js">
-	</script>
+	<script type="text/javascript" src="all.min.js"></script>
+	<script type="text/javascript" src="draw.js"></script>
 </head>
 <body onload="init()">
 	<div class="frame" id="header">
@@ -13,11 +11,19 @@
 			Project Obito
 		</div>
 	</div>
-	<div class="frame" id="canvas-container">
-		<canvas id="canvas"></canvas>
+	<div id="main">
+		<div id="chat-window">
+			<div id="chat-log">
+			</div>
+			<div id="chat-editor">
+				<div id="chat-editor-mode">
+					<textarea id="text-edit"></textarea>
+				</div>
+				<a href="#" class="btn-submit" onclick="submit()">Submit</a>
+			</div>
+		</div>
 	</div>
-	<div class="frame" id="ui">
-		<button id="clear-button">Clear All</button>
+	<div id="footer">
 	</div>
 </body>
 </html>
