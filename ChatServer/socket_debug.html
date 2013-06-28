@@ -1,0 +1,25 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://localhost:8888/socket.io/socket.io.js"></script>
+</head>
+<body>
+	Event: <input id="event"><br>
+	Args:<br>
+	<textarea id="args" style="width:400px;height:400px"></textarea><br>
+	<button onclick="submit()">Send Event</button>
+	<button onclick="close()">Disconnect</button>
+
+	<script type="text/javascript">
+	var socket = io.connect('http://localhost:8888');
+
+	function submit(){
+		socket.emit(
+			document.getElementById('event').value,
+			JSON.parse(document.getElementById('args').value)
+		);
+	}
+
+	function close(){
+		socket.disconnect();
+	}
+	</script>
