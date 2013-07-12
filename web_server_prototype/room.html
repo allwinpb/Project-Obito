@@ -1,0 +1,115 @@
+<! DOCTYPE HTML>
+
+<html lang="en">
+	<head>
+		<title>Project Obito</title>
+		<link type="text/css" rel="stylesheet" href="http://192.241.196.61/static/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="http://192.241.196.61/static/css/style.css"/>
+	</head>
+
+	<body>
+		<!-- Navbar -->
+		<div class="navbar navbar-inverse navbar-static-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand">Project Obito</a>
+					<ul class="nav">
+						<li><a href="#">Home</a></li>
+						<li><a href="#how-to" data-toggle="modal">How To</a></li>
+						<li><a href="#">About</a></li>
+					</ul>
+					<ul class="nav pull-right">
+						<li><a href="#" onclick="socket.disconnect()">Log Off</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<br>
+		<!-- modal: USERNAME INPUT -->
+		<div class="modal hide" id="input-usrname" data-keyboard="false">
+			<div class="modal-header">
+				<h3>You're about to join a room!</h3>
+			</div>
+			<div class="modal-body">
+				<form>
+					<fieldset>
+						<div id="warning-box"></div>
+						<label>Please enter a nickname:</label>
+						<input id="nickname" type="text" placeholder="Your name here">
+					</fieldset>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" onclick="registerUser()">Join!</button>
+			</div>
+		</div>
+		<!-- modal: HOW-TO -->
+		<div class="modal hide fade" id="how-to" aria-hidden="true">
+			<div class="modal-header">
+				<h3>How-To</h3>
+			</div>
+			<div class="modal-body">
+				<p>Share the link provided with your friends so that they can join your chat-room. You can choose to send either a text message (default) or a drawing using the tabs to the left of the input area.</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			</div>
+		</div>
+		<!-- "container" centers page content -->
+		<div class="container">
+			<!-- full width spanning header -->
+			<div class="row header">
+				<div class="span10 offset1 well">
+					<p>Hi! If you'd like to invite more people to this chat, just give them this link!<br>
+						<a href="http://192.241.196.61/rooms/{{roomID}}">http://192.241.196.61/rooms/{{roomID}}</a></p>
+				</div>
+			</div>
+			<!-- main chat log + user list -->
+			<div class="row main">
+				<div class="span8 offset1 well">
+					<ul class="chat-log unstyled">
+					</ul>
+				</div>
+				<div class="span2 well">
+					<ul class="unstyled" id="user-list-container">
+					</ul>
+				</div>
+			</div>
+			<!-- ui controls -->
+			<div class="row controls">
+				<div class="span8 offset1">
+					<div class="tabbable tabs-left">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a id="text-tab" href="#tab-text" data-toggle="tab"><i class="icon-font"></i></a>
+							</li>
+							<li><a id="doodle-tab"href="#tab-draw" data-toggle="tab"><i class="icon-pencil"></i></a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane" id="tab-draw">
+								<!-- doodle -->
+								<div class="border-simple"><canvas id="canvas"></canvas></div>
+							</div>
+							<div class="tab-pane active" id="tab-text">
+								<textarea id="text-editor" type="text" placeholder="Type here..."></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="span2">
+					<button class="btn btn-block btn-large" id="btn-submit" type="button" onclick="submitMessage()">Submit</button>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var roomID = "{{roomID}}";
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://192.241.196.61/static/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="http://192.241.196.61/static/js/fabric.all.min.js"></script>
+		<script type="text/javascript" src="http://192.241.196.61/static/js/socket.io.min.js"></script>
+		<script type="text/javascript" src="http://192.241.196.61/static/js/script.js"></script>
+		<script type="text/javascript" src="http://192.241.196.61/static/js/chat_conn.js"></script>
+	</body>
+</html>
