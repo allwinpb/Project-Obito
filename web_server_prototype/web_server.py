@@ -39,26 +39,10 @@ class RoomHandler(tornado.web.RequestHandler):
         else:
             self.write('505: NO SUCH ROOM')
 
-# class JSHandler(tornado.web.RequestHandler):
-#     def get(self,file):
-#         self.render('js/'+file)
-
-# class ImageHandler(tornado.web.RequestHandler):
-#     def get(self,file):
-#         self.render('images/'+file)
-
-# class IMGHandler(tornado.web.RequestHandler):
-#     def get(self,file):
-#         self.render('img/'+file)
-
-# class StyleHandler(tornado.web.RequestHandler):
-#     def get(self,file):
-#         self.render('css/'+file)
-
 application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/rooms/([^/]+)",RoomHandler),
-    (r"/static/(.*)",tornado.web.StaticFileHandler,{"path":"/root/web_server_prototype"}),
+    (r"/static/(.*)",tornado.web.StaticFileHandler,{"path":"/root/web_server_prototype/static"}),
 ])
 
 if __name__ == "__main__":

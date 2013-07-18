@@ -1,0 +1,58 @@
+TABLE: GlobalChatHistory
+========================
+
++-------+-----------+-----------+-----------+-----------+---------------+
+|	id	|	content	|	type 	|	author	|	room	|	timestamp	|
++-------+-----------+-----------+-----------+-----------+---------------+
+
+One row constitutes a single message sent to a single room by a single user
+
+id = primary key
+content = string of variable length (no limits)
+type = string("text"||"drawing")
+author = id (==> User)
+room = id (==> Room)
+timestamp = date&time
+
+TABLE: UserChatHistory
+======================
+
++-------+-----------+-----------+---------------+---------------+
+|	id	|	user 	|	room	|	join_time	|	end_time	|
++-------+-----------+-----------+---------------+---------------+
+
+One row represents the time the user was active in a given room
+
+id = primary key
+user = id (==> User)
+room = id (==> Room)
+join_time = date&time when user joined the room
+end_time = date&time when user left the room
+
+TABLE: User
+===========
+
++-------+-----------+---------------+-------------------+
+|	id	|	name	|	join_date	|	last_visited	|
++-------+-----------+---------------+-------------------+
+
+One row represents a single user registered with the site
+
+id = primary key
+name = string
+join_date = date&time when user "registered" with the site
+last_visited = date&time of last visit
+
+TABLE: Room
+===========
+
++-------+-----------+-----------+-----------+
+|	id	|	title	|	created	|	expired	|
++-------+-----------+-----------+-----------+
+
+One row represents a single room which was created sometime in the past
+
+id = primary key
+title = string (Custom Room title if need be. Can be null)
+created = date&time when room was created
+expired = date&time when room expired (can be null for currently active rooms)
