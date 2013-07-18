@@ -56,3 +56,10 @@ id = primary key
 title = string (Custom Room title if need be. Can be null)
 created = date&time when room was created
 expired = date&time when room expired (can be null for currently active rooms)
+
+Remarks
+-------
+I hope you already know what a primary key is.
+(==>) denotes that the field points to the primary key of another table (foreign key)
+date&time simply denotes that you should use the time/date datatype in SQL
+string = varchar (with a sensible limit) or text, your choice BUT content in GlobalChatHistory should be TEXT
