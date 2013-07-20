@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<title>Welcome to Doodle Chat!</title>
+
+	<!-- CSS links -->
+	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+<body>
+	<div class="navbar navbar-static-top navbar-inverse">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">Doodle Chat</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav pull-right nav-user-controls">
+						<li><a href="#"><div class="fb-login-button" data-size="large">Connect with Facebook</div></a></li>
+						<li><a id="username" href="#"><img class="img-circle"><strong></strong></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="hero-unit">
+			<h1>Doodle chat!</h1>
+			<p class="lead">The ultimate chat service is here! With support for free hand drawing, external vector graphics (some are preloaded for you!) and of course regular text. There is something for everybody!</p>
+			<button class="btn btn-large btn-success">Start a Chat!</button>
+		</div>
+		<div class="row">
+			<div class="span4">
+				<h4>No Account Required!</h4>
+				<p>Though encouraged, you do not need a Facebook account to use this site. An account simply allows you to save preferences and chat history.</p>
+			</div>
+			<div class="span4">
+				<h4>Doodlez!</h4>
+				<p>Create your own doodles and send them as regular messages!</p>
+			</div>
+			<div class="span4">
+				<h4>Chatrooms..</h4>
+				<p>You can dynamically add or remove multiple participants to your chat at anytime!</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Script includes -->
+	<div id="fb-root"></div>
+
+	<script type="text/javascript" src="static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="static/js/fb.js"></script>
+
+</body>
+</html>

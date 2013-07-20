@@ -1,0 +1,94 @@
+WARNING:tornado.access:404 GET /DUMMYROOM (117.196.161.107) 0.78ms
+WARNING:tornado.access:404 GET /favicon.ico (117.196.161.107) 0.86ms
+WARNING:tornado.access:404 GET /apple-touch-icon-precomposed.png (117.196.161.107) 0.67ms
+WARNING:tornado.access:404 GET /apple-touch-icon.png (117.196.161.107) 0.76ms
+WARNING:tornado.access:404 GET /favicon.ico (117.196.161.107) 0.79ms
+WARNING:tornado.access:404 GET /apple-touch-icon-precomposed.png (117.196.161.107) 0.71ms
+WARNING:tornado.access:404 GET /apple-touch-icon.png (117.196.161.107) 0.80ms
+WARNING:tornado.access:404 GET /favicon.ico (117.196.161.107) 0.45ms
+WARNING:tornado.access:404 GET /apple-touch-icon-precomposed.png (117.196.161.107) 0.32ms
+WARNING:tornado.access:404 GET /apple-touch-icon.png (117.196.161.107) 0.44ms
+WARNING:tornado.access:404 GET /favicon.ico (183.90.41.24) 0.76ms
+WARNING:tornado.access:404 GET /favicon.ico (183.90.41.22) 0.45ms
+WARNING:tornado.access:404 GET /favicon.ico (183.90.41.21) 0.45ms
+WARNING:tornado.access:404 GET /favicon.ico (183.90.41.22) 0.42ms
+WARNING:tornado.access:404 GET /favicon.ico (183.90.41.20) 0.69ms
+WARNING:tornado.access:404 GET /favicon.ico (183.90.41.22) 0.42ms
+WARNING:tornado.access:404 GET /favicon.ico (183.90.41.21) 0.45ms
+WARNING:tornado.access:404 GET /favicon.ico (183.90.41.22) 0.45ms
+WARNING:tornado.access:404 GET /favicon.ico (183.90.41.22) 0.45ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.2.163) 0.86ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.2.163) 0.82ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.2.163) 0.79ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.2.163) 0.77ms
+WARNING:tornado.access:405 HEAD / (208.25.216.194) 0.98ms
+WARNING:tornado.access:404 GET /favicon.ico (117.222.146.140) 0.78ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.2.163) 0.52ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.2.163) 0.42ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.82ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.81ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.79ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.79ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.75ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.77ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.88ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.88ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.90ms
+WARNING:tornado.access:404 GET /r (203.116.187.9) 0.84ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.77ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.78ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.86ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.78ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.81ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.78ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.75ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.77ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.75ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.48ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.82ms
+WARNING:tornado.access:404 GET /favicon.ico (203.116.187.9) 0.78ms
+WARNING:tornado.access:404 GET /favicon.ico (202.40.139.165) 0.86ms
+WARNING:tornado.access:404 GET /favicon.ico (202.40.139.165) 0.85ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.2.163) 0.82ms
+WARNING:tornado.access:404 GET /favicon.ico (202.156.10.232) 0.82ms
+WARNING:tornado.access:404 GET /favicon.ico (202.156.10.232) 0.48ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.2.163) 0.47ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.2.163) 0.82ms
+WARNING:tornado.access:404 GET /favicon.ico (202.40.139.164) 0.46ms
+WARNING:tornado.access:404 GET /favicon.ico (202.40.139.164) 0.47ms
+WARNING:tornado.access:404 GET /favicon.ico (220.255.1.241) 0.75ms
+WARNING:tornado.access:404 GET /favicon.ico (220.255.1.241) 0.79ms
+WARNING:tornado.access:404 GET /favicon.ico (220.255.1.214) 0.78ms
+WARNING:tornado.access:404 GET /favicon.ico (117.196.133.222) 0.78ms
+WARNING:tornado.access:404 GET /favicon.ico (117.196.133.222) 0.82ms
+WARNING:tornado.access:404 GET /favicon.ico (202.156.10.230) 0.81ms
+WARNING:tornado.access:404 GET /favicon.ico (202.156.10.230) 0.50ms
+WARNING:tornado.access:404 GET /favicon.ico (202.156.10.230) 0.77ms
+WARNING:tornado.access:404 GET /favicon.ico (202.156.10.230) 0.75ms
+WARNING:tornado.access:404 GET /favicon.ico (202.156.10.230) 0.78ms
+WARNING:tornado.access:404 GET /favicon.ico (202.156.10.230) 0.79ms
+WARNING:tornado.access:404 GET /favicon.ico (117.222.151.121) 0.77ms
+ERROR:tornado.application:Uncaught exception GET /static/web_server.py (173.252.101.113)
+HTTPRequest(protocol='http', host='192.241.196.61', method='GET', uri='/static/web_server.py', version='HTTP/1.1', remote_ip='173.252.101.113', headers={'Connection': 'keep-alive', 'Accept-Encoding': 'deflate, gzip', 'Range': 'bytes=0-524287', 'Host': '192.241.196.61', 'Accept': '*/*', 'User-Agent': 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)'})
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 1141, in _when_complete
+    callback()
+  File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 1162, in _execute_method
+    self._when_complete(method(*self.path_args, **self.path_kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 1844, in get
+    for chunk in content:
+  File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2002, in get_content
+    assert remaining == 0
+AssertionError
+ERROR:tornado.access:500 GET /static/web_server.py (173.252.101.113) 2.93ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.35.111) 0.83ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.35.111) 0.78ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.35.111) 0.83ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.35.111) 0.46ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.35.111) 0.80ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.35.111) 0.81ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.35.111) 0.68ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.35.111) 0.63ms
+WARNING:tornado.access:404 GET /favicon.ico (42.115.35.111) 0.46ms
+WARNING:tornado.general:403 GET /static/ (117.222.151.121):  is not a file
+WARNING:tornado.access:403 GET /static/ (117.222.151.121) 1.80ms
