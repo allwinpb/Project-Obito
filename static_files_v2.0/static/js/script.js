@@ -6,8 +6,17 @@ var eCanvas = null;
 //variable used for denoting the type of message
 var message_type = "text";
 
+//init function
 $(function(){
+	//initialise the doodle editor
 	eCanvas = new fabric.Canvas("canvas");
+
+	//show tooltips
+	$('.tooltip-container').tooltip({
+		animation: false
+	});
+	$('#doodle-color-select').popover();
+	console.log('popover done');
 	$("#input-usrname").modal("show");
 });
 

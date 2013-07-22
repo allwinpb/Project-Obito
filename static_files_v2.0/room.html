@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -41,12 +41,16 @@
 	</div>
 	<div class="container">
 		<!-- full width spanning header -->
-		<div class="alert alert-success">
-			<span>
-				Hi! If you'd like to invite more people to this chat, just give them this link!<br>
-				<a href="http://192.241.196.61/rooms/{{roomID}}">http://192.241.196.61/rooms/{{roomID}}</a>
-			</span>
+		<div class="row title">
+			<div class="span12">
+				<h3 id="room-title" class="tooltip-container" contentEditable="true" data-toggle="tooltip" title="Click to edit the Title for this room" data-placement="right">Title</h3>
+				<div class="pull-right input-prepend tooltip-container" data-toggle="tooltip" title="Share link to invite your friends" data-placement="left">
+					<span class="add-on">Room link :</span>
+					<input onclick="this.select()" class="span2 disabled" type="text" value="http://192.241.196.61/rooms/{{roomID}}">
+				</div>
+			</div>
 		</div>
+		<hr>
 		<!-- main chat log + user list -->
 		<div class="row main">
 			<div class="span9 well well-small">
@@ -60,13 +64,18 @@
 		</div>
 		<!-- ui controls -->
 		<div class="row controls">
-			<div class="span9">
-				<div class="tabbable tabs-left">
+			<div class="span12">
+				<div class="tabbable">
 					<ul class="nav nav-tabs">
 						<li class="active">
 							<a id="text-tab" href="#tab-text" data-toggle="tab"><i class="icon-font"></i></a>
 						</li>
 						<li><a id="doodle-tab"href="#tab-draw" data-toggle="tab"><i class="icon-pencil"></i></a></li>
+						<li id="tab-controls" class="pull-right">
+							<a href="#">[ W ]</a>
+							<a href="#" id="doodle-color-select" class="btn" data-toggle="popover" data-content="Description" data-original-title="Hoohah">[ c ]</a>
+							<button class="btn btn-info">Submit</button>
+						</li>
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane" id="tab-draw">
@@ -78,9 +87,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="span3">
-				<button class="btn btn-block btn-large" id="btn-submit" type="button" onclick="submitMessage()">Submit</button>
 			</div>
 		</div>
 	</div>
