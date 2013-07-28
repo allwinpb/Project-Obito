@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>Chat History</title>
+</head>
+<body>
+	{% if history_list.count > 0 %}
+		<h1>Chat History</h1>
+		{% for history in history_list %}
+			<div>
+				<a href="/history/list/{{ history.id }}/"> {{ history.room }} </a>
+				<br>
+				{{ history.join_time }} 
+				<br>
+				{{ history.end_time}}
+			</div>
+		{% endfor %}
+	{% else %}
+		<p>No rows view</p>
+	{% endif %}
+</body>
+</html>
