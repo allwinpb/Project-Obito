@@ -19,12 +19,12 @@ window.fbAsyncInit = function() {
 			FB.api('/me/picture?redirect=false&type=square',function(response){
 				$('.nav-user-controls #username > img').attr('src',response.data.url);
 			});
-			$('#anon-session').css('display','block');
-			$('#user-session').css('display','none');
+			$('#anon-session').css('display','none');
+			$('#user-session').css('display','block');
 		}else{
 			//not connected through facebook
-			$('#anon-session').css('display','none');
-			$('#user-session').css('display','block');		
+			$('#anon-session').css('display','block');
+			$('#user-session').css('display','none');
 		}
 	})
 };
@@ -38,4 +38,11 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 $(function(){
+	$('.main').css('height',$(window).height()*0.4);
+	$(window).on('resize',function(){
+		$('.main').css('height',$(window).height()*0.4);
+	});
+
+	$('#anon-session').css('display','block');
+	$('#user-session').css('display','none');
 });

@@ -13,7 +13,7 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="brand" href="#">Doodle Chat</a>
-				<ul class="pull-right nav-user-controls">
+				<ul class="nav pull-right nav-user-controls">
 					<li id="anon-session">
 						<a href="#">
 							<div class="fb-login-button" data-size="large">Connect with Facebook</div>
@@ -86,16 +86,16 @@
 							<a href="#" id="doodle-color-select" data-toggle="popover" data-original-title="Choose Color" data-placement="top">
 								<div style='background-color:black'>"</div>
 							</a>
-							<button class="btn btn-info">Submit</button>
+							<button id="btn-submit" class="btn btn-info">Submit</button>
 						</li>
 					</ul>
 					<div class="tab-content">
-						<div class="tab-pane" id="tab-draw">
+						<div class="tab-pane" id="tab-draw"> 	
 							<!-- doodle -->
 							<div class="border-simple"><canvas id="canvas"></canvas></div>
 						</div>
 						<div class="tab-pane active" id="tab-text">
-							<textarea id="text-editor" placeholder="Type here..."></textarea>
+							<textarea id="text-editor" placeholder="Type here..." rows="5"></textarea>
 						</div>
 					</div>
 				</div>

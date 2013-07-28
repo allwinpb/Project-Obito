@@ -1,9 +1,13 @@
 // BLACK MAGIC IN PROGRESS. DO NOT TOUCH THIS CODE.
 
+//VARIABLES
+//roomTitle, roomID
+
 //Canvas in user editing area
 var eCanvas = null,
 	eCanvasColor = 4, //black
-	eCanvasWidth = 2;
+	eCanvasWidth = 2,
+	roomTitle = "{{roomTitle}}";
 //variable used for denoting the type of message
 var message_type = "text";
 
@@ -22,6 +26,35 @@ $(function(){
 	//init and logic code for the thickness popover
 	prepareWidthModal();
 
+	//prepare the room title editing code
+	$('#room-title').on('blur',function(e){
+		if(roomTitle != e.target.innerText){
+			//id has been changed
+			if(e.target.innerText == ""){
+				e.target.innerText = roomTitle;
+			}else{
+				roomTitle = e.target.innerText;
+				//TODO send the room title to everyone
+			}
+		}
+	}).on('keydown',function(e){
+		if(e.which==13){
+			e.preventDefault();
+			focusChat();
+			//would call the blur event above
+		}
+	});
+
+	//submit logic
+	$('#btn-submit').on('click',function(){
+		submitMessage(getMessageObject());
+	});
+	$('#text-editor').on('keyup',function(e){
+		if(e.which==13){
+			submitMessage(getMessageObject());
+		}
+	});
+
 	$("#input-usrname").modal("show");
 });
 
@@ -30,6 +63,7 @@ $('a[data-toggle="tab"]').on('shown',function(e){
 		prepareCanvasInput();
 		message_type = "drawing";
 	}else{
+		$('#text-editor').val('');
 		message_type = "text";
 	}
 });
@@ -183,4 +217,8 @@ function getMessageObject(){
 		eCanvas.renderAll();
 	}
 	return msg;
+}
+
+function focusChat(){
+	$('#text-editor').focus();
 }

@@ -32,7 +32,9 @@ hr{
 #title-tooltip{
 	visibility: hidden;
 }
-
+#username > strong{
+	margin-right: 10px;
+}
 #username > img{
 	width: 20px;
 	height: 20px;
@@ -76,14 +78,20 @@ hr{
 }
 
 
-#btn-submit, #text-editor, #tab-draw > div{
+#tab-text > textarea, #tab-draw > div{
 	width: 100%;
 	height: 100%;
 	resize: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-.main > div{
+.main{
 	height: 50%;
+}
+.main > div{
+	height: 100%;
 }
 .controls > div{
 	height: 20%;
