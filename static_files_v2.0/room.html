@@ -14,8 +14,16 @@
 			<div class="container">
 				<a class="brand" href="#">Doodle Chat</a>
 				<ul class="pull-right nav-user-controls">
-					<!-- <li><a href="#"><div class="fb-login-button" data-size="large">Connect with Facebook</div></a></li> -->
-					<li><a id="username" href="#"><strong></strong><img class="img-circle"></a></li>
+					<li id="anon-session">
+						<a href="#">
+							<div class="fb-login-button" data-size="large">Connect with Facebook</div>
+						</a>
+					</li>
+					<li id="user-session">
+						<a id="username" href="#">
+							<strong></strong><img class="img-circle">
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -70,10 +78,14 @@
 						<li class="active">
 							<a id="text-tab" href="#tab-text" data-toggle="tab"><i class="icon-font"></i></a>
 						</li>
-						<li><a id="doodle-tab"href="#tab-draw" data-toggle="tab"><i class="icon-pencil"></i></a></li>
+						<li><a id="doodle-tab" href="#tab-draw" data-toggle="tab"><i class="icon-pencil"></i></a></li>
 						<li id="tab-controls" class="pull-right">
-							<a href="#">[ W ]</a>
-							<a href="#" id="doodle-color-select" class="btn" data-toggle="popover" data-content="Description" data-original-title="Hoohah">[ c ]</a>
+							<!-- <a href="#" id="doodle-width-select" data-toggle="popover" data-original-title="Choose Width" data-placement="top">
+								[ W ]
+							</a> -->
+							<a href="#" id="doodle-color-select" data-toggle="popover" data-original-title="Choose Color" data-placement="top">
+								<div style='background-color:black'>"</div>
+							</a>
 							<button class="btn btn-info">Submit</button>
 						</li>
 					</ul>
@@ -83,7 +95,7 @@
 							<div class="border-simple"><canvas id="canvas"></canvas></div>
 						</div>
 						<div class="tab-pane active" id="tab-text">
-							<textarea id="text-editor" type="text" placeholder="Type here..."></textarea>
+							<textarea id="text-editor" placeholder="Type here..."></textarea>
 						</div>
 					</div>
 				</div>
@@ -95,6 +107,7 @@
 	var roomID = "{{roomID}}";
 	</script>
 	<script type="text/javascript" src="static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="static/js/fb.js"></script>
 	<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="static/js/fabric.all.min.js"></script>
 	<script type="text/javascript" src="static/js/socket.io.min.js"></script>

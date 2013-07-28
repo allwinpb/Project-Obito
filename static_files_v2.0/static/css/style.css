@@ -13,26 +13,68 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+
+
 /*Custom CSS*/
 hr{
 	margin: 0.5em 0em;
 }
 
-
+.title > div{
+	display: table-cell;
+	vertical-align: middle;
+}
 .title > div > *{
 	margin: 0px;
-	line-height: 10px;
 	display: inline-block;
-	vertical-align: bottom;
 }
 
 #title-tooltip{
 	visibility: hidden;
 }
 
+#username > img{
+	width: 20px;
+	height: 20px;
+}
+
+/*Will be selectively turned on by Facebook SDK*/
+#anon-session, #user-session{
+	display: none;
+}
+
 #tab-controls > *{
 	display: inline-block;
 }
+
+/*#color-list refers to the content of the popover in color selector*/
+#color-list > li{
+	vertical-align: middle;
+	padding: 3px;
+	line-height: 0px;
+}
+
+#color-list > li:hover, #color-list > li.selected{
+	padding: 2px;
+	background-color: #e3e3e3;
+	border: 1px solid #000000;
+	border-radius: 3px;
+}
+
+#color-list > li > div, #doodle-color-select > div{
+	display: inline-block;
+	width:20px;
+	height: 20px;
+	border-radius: 3px;
+	margin: 0px;
+	padding: 0px;
+}
+
+#doodle-color-select > div{
+	height:auto;
+	color: transparent;
+}
+
 
 #btn-submit, #text-editor, #tab-draw > div{
 	width: 100%;
@@ -40,10 +82,12 @@ hr{
 	resize: none;
 }
 
+.main > div{
+	height: 50%;
+}
 .controls > div{
 	height: 20%;
 }
-
 
 .chat-server{
 	font: italic bold 11px sans-serif;

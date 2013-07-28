@@ -1,8 +1,9 @@
 // BLACK MAGIC IN PROGRESS. DO NOT TOUCH THIS CODE.
 
 //Canvas in user editing area
-var eCanvas = null;
-
+var eCanvas = null,
+	eCanvasColor = 4, //black
+	eCanvasWidth = 2;
 //variable used for denoting the type of message
 var message_type = "text";
 
@@ -15,8 +16,12 @@ $(function(){
 	$('.tooltip-container').tooltip({
 		animation: false
 	});
-	$('#doodle-color-select').popover();
-	console.log('popover done');
+
+	//init and logic code for the color popover
+	prepareColorModal();
+	//init and logic code for the thickness popover
+	prepareWidthModal();
+
 	$("#input-usrname").modal("show");
 });
 
@@ -28,6 +33,59 @@ $('a[data-toggle="tab"]').on('shown',function(e){
 		message_type = "text";
 	}
 });
+
+//Init and logic code for the color selector
+function prepareColorModal(){
+	var color_popup_content = " \
+	<ul id='color-list' class='inline'> \
+	<li><div style='background-color:red'></div></li> \
+	<li><div style='background-color:green'></div></li> \
+	<li><div style='background-color:blue'></div></li> \
+	<li><div style='background-color:yellow'></div></li> \
+	<li><div style='background-color:black'></div></li> \
+	</ul> \
+	";
+	$('#doodle-color-select').popover({
+		html:true,
+		content:color_popup_content,
+		trigger:'click focus'
+	}).on('shown',function(){
+		$('#color-list').children()[eCanvasColor].className += " selected";
+		$('#color-list > li > div').on('click',function(e){
+			$('#doodle-color-select').html(e.target.outerHTML);
+			$('#doodle-color-select > div').text('"');
+			$('li.selected').removeClass('selected');
+			eCanvas.freeDrawingBrush.color = e.target.style.backgroundColor;
+			if(e.target.parentNode.className.indexOf("selected")<0){
+				e.target.parentNode.className = "selected";
+				var color_list = e.target.parentNode.parentNode.children;
+				for(var i=0;i<color_list.length;i++){
+					if(e.target.parentNode == color_list[i]){
+						eCanvasColor = i;
+						break;
+					}
+				}
+			}
+		});	
+	});
+}
+
+function prepareWidthModal(){
+	var width_popover_content = " \
+	<ul id='width-list' class='inline'> \
+	<li>1</li> \
+	<li>2</li> \
+	<li>3</li> \
+	<li>4</li> \
+	</ul> \
+	";
+	$('#doodle-width-select').popover({
+		html:true,
+		content:width_popover_content,
+		trigger:'click focus'
+	});
+
+}
 
 //Prepares the canvas area for free-drawing
 function prepareCanvasInput(){
@@ -116,6 +174,7 @@ function getMessageObject(){
 	msg.type = message_type;
 	if(message_type=="text"){
 		msg.content = $("#text-editor").val();
+		$('#text-editor').val("");
 	}else if(message_type=="drawing"){
 		msg.content = JSON.stringify(eCanvas);
 		msg.height = eCanvas.getHeight();
