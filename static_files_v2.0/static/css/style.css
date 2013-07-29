@@ -45,6 +45,10 @@ hr{
 	display: none;
 }
 
+#anon-username-input, #anon-username-submit{
+	display: none;
+}
+
 #tab-controls > *{
 	display: inline-block;
 }
@@ -162,6 +166,7 @@ horizontally*/
 	cursor: auto;
 }
 
+/*Otherwise, user will be able to see pre-init room.html, which is ugly*/
 .modal-backdrop{
 	opacity: 1;
 }

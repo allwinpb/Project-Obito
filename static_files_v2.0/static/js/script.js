@@ -55,7 +55,13 @@ $(function(){
 		}
 	});
 
-
+	//show the input name box only when user is not signed in
+	if(userSignedIn==null){ //fb code is lagging behind
+	}else if(userSignedIn==true){
+		//connected through fb
+		$('#anon-username-input').css('display','none');
+		$('#anon-username-submit').css('display','none');
+	}
 	$("#input-usrname").modal("show");
 });
 
