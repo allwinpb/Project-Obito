@@ -1,5 +1,8 @@
 //TODO: http:// to // in fb sdk async
 
+var userSignedIn = null;
+var signInEvent = null;
+
 window.fbAsyncInit = function() {
 	// init the FB JS SDK
 	FB.init({
@@ -21,10 +24,14 @@ window.fbAsyncInit = function() {
 			});
 			$('#anon-session').css('display','none');
 			$('#user-session').css('display','block');
+			userSignedIn = true;
+			signInEvent();
 		}else{
 			//not connected through facebook
 			$('#anon-session').css('display','block');
 			$('#user-session').css('display','none');
+			userSignedIn = false;
+			signInEvent();
 		}
 	})
 };

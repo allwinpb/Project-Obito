@@ -53,6 +53,10 @@ io.sockets.on('connection', function(socket){
 		console.log(name + " sent a message to " + room + ".");
 	});
 
+	socket.on('room_update',function(name){
+		socket.broadcast.to(room).emit('room_update',name);
+	});
+
 	socket.on('disconnect',function(){
 		if(room == null)	return;
 		socket.leave(room);
@@ -66,15 +70,8 @@ io.sockets.on('connection', function(socket){
 		client.smembers("room:"+room,function(err,reply){
 			io.sockets.in(room).emit('user_list',reply);
 		});
-		var msg = {};
-		msg.sender = "SERVER";
-		msg.type = "disconnect";
-		msg.content = name + " has left this room.";
-		socket.broadcast.to(room).emit('receive_message',msg);
-		msg.content = "You have been disconnected. You may close this window.";
-		socket.emit('receive_message',msg);
-		socket.emit('disconnect_success');
 		console.log(name + " left " + room + ".");
 	});
 });
+
 app.listen(8888);

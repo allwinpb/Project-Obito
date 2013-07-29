@@ -34,7 +34,7 @@ $(function(){
 				e.target.innerText = roomTitle;
 			}else{
 				roomTitle = e.target.innerText;
-				//TODO send the room title to everyone
+				updateRoom(roomTitle);
 			}
 		}
 	}).on('keydown',function(e){
@@ -54,6 +54,7 @@ $(function(){
 			submitMessage(getMessageObject());
 		}
 	});
+
 
 	$("#input-usrname").modal("show");
 });

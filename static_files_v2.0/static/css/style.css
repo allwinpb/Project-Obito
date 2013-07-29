@@ -161,3 +161,7 @@ horizontally*/
 .uneditable-input{
 	cursor: auto;
 }
+
+.modal-backdrop{
+	opacity: 1;
+}

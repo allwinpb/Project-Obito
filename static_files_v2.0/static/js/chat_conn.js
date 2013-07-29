@@ -24,7 +24,11 @@ $(function(){
 			str += '<li><i class="icon-user"></i>  ' + users[i] + '</li>';
 		}
 		$("#user-list-container").html(str);
-	})
+	});
+	socket.on('room_update',function(name){
+		roomTitle = name;
+		$('#room-title').text(name);
+	});
 
 });
 
@@ -41,4 +45,8 @@ function submitMessage(){
 	socket.emit('chat_message',msg);
 	logMessage(msg);
 	//add callback here
+}
+
+function updateRoom(name){
+	socket.emit('room_update',name);
 }
