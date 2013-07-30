@@ -15,7 +15,7 @@ io.sockets.on('connection', function(socket){
 				return;
 			}
 			if(reply){
-				client.sismember("room:"+data.room,data.nickname,function(err,reply){
+				client.sismember("room::"+data.room,data.nickname,function(err,reply){
 					if(reply==1){
 						//user already exists. fail this register request
 						socket.emit('register_fail');
@@ -25,6 +25,11 @@ io.sockets.on('connection', function(socket){
 						room = data.room;
 						socket.join(room);
 						socket.emit('register_pass');
+						//update room title
+						var placeholder_title = name + "'s room";
+						//add if not exist "room:"" + data.room + "title" placeholder_title
+						//then emit the value in title as room_update
+						socket.emit('room_update',data.room);
 						var msg = {};
 						msg.sender = "SERVER";
 						msg.type = "connect";

@@ -1,7 +1,6 @@
 //TODO: http:// to // in fb sdk async
 
 var userSignedIn = null;
-var signInEvent = null;
 
 window.fbAsyncInit = function() {
 	// init the FB JS SDK
@@ -13,27 +12,30 @@ window.fbAsyncInit = function() {
 
 	});
 	// Additional initialization code such as adding Event Listeners goes here
-	FB.Event.subscribe('auth.authResponseChange',function(response){
+	FB.getLoginStatus(respondToLoginChange);
+	FB.Event.subscribe('auth.authResponseChange',respondToLoginChange);
+
+	function respondToLoginChange(response){
 		if(response.status==='connected'){
 			//success
 			FB.api('/me',function(response){
+				userName = response.name;
 				$('.nav-user-controls #username > strong').text(response.name);
+				userSignedIn = true;
+				$.post('/users/add',response); //simply send along the details, ignore return
 			});
 			FB.api('/me/picture?redirect=false&type=square',function(response){
 				$('.nav-user-controls #username > img').attr('src',response.data.url);
 			});
 			$('#anon-session').css('display','none');
 			$('#user-session').css('display','block');
-			userSignedIn = true;
-			signInEvent();
 		}else{
 			//not connected through facebook
 			$('#anon-session').css('display','block');
 			$('#user-session').css('display','none');
 			userSignedIn = false;
-			signInEvent();
 		}
-	})
+	}
 };
 // Load the SDK asynchronously
 (function(d, s, id){

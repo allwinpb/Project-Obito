@@ -7,7 +7,9 @@
 var eCanvas = null,
 	eCanvasColor = 4, //black
 	eCanvasWidth = 2,
-	roomTitle = "{{roomTitle}}";
+	roomTitle = "{{roomTitle}}",
+	userName = null;
+
 //variable used for denoting the type of message
 var message_type = "text";
 
@@ -56,12 +58,30 @@ $(function(){
 	});
 
 	//show the input name box only when user is not signed in
-	if(userSignedIn==null){ //fb code is lagging behind
-	}else if(userSignedIn==true){
-		//connected through fb
-		$('#anon-username-input').css('display','none');
-		$('#anon-username-submit').css('display','none');
-	}
+	(function startLoginProcess(){
+		if(userSignedIn==true){
+			//connected through fb
+			registerUser(); //userName is already assigned
+			console.log(userName + ' registered as Facebook User');
+		}else if(userSignedIn==false){
+			//not connected through fb, so show the anon-input window
+			var affirmativeAction = function(){
+				userName = $('#nickname').val();
+				registerUser();
+				console.log(userName + ' registered as Anon User');
+			};
+			$('#anon-username-input').css('display','block').on('keyup',function(e){
+				if(e.which==13){
+					affirmativeAction();
+				}
+			});
+			$('#anon-username-submit').css('display','inline-block').on('click',affirmativeAction);
+		}else{
+			//fb is not done loading, wait for a bit and try again
+			setTimeout(startLoginProcess,200);
+		}
+	})();
+
 	$("#input-usrname").modal("show");
 });
 

@@ -1,7 +1,6 @@
 /* Chat Server */
 var chat_server = null;//"http://192.241.196.61:8888";
 var socket = null;
-
 $(function(){
 	socket = io.connect(chat_server);
 	console.log("Server connection established");
@@ -27,15 +26,14 @@ $(function(){
 	});
 	socket.on('room_update',function(name){
 		roomTitle = name;
-		$('#room-title').text(name);
+		$('#room-title').text(roomTitle);
 	});
 
 });
 
 function registerUser(){
-	var nickname = document.getElementById('nickname').value;
 	var data = new Object();
-	data.nickname = nickname;
+	data.nickname = userName;
 	data.room = roomID;
 	socket.emit('register',data);
 }
