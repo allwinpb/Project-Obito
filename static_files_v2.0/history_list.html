@@ -43,11 +43,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>{{slNo}}</td>
-							<td>{{RoomName}}</td>
-							<td>{{RoomDate}}</td>
-						</tr>
+						{% for history in history_list %}
+							<tr>
+								<td>{{history.id}}</td>
+								<td>{{history.room.id}}</td>
+								<td>{{history.join_time}}</td>
+							</tr>
+						{% endfor %}
 					</tbody>
 				</table>
 			</div>

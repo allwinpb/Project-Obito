@@ -4,10 +4,10 @@ from django.shortcuts import render_to_response, render
 import datetime, urlparse
 
 def ChatHistory(request):
-    return render_to_response("chathistory.html", {'history_list': UserChatHistory.objects.all()})
+    return render_to_response("history_list.html", {'history_list': UserChatHistory.objects.all()})
 
 def ChatHistoryIndex(request, history_id):
-    return render_to_response("chatindex.html", {'history': UserChatHistory.objects.get(id=history_id)})
+    return render_to_response("history_room.html", {'history': UserChatHistory.objects.get(room.id=history_id)})
 
 def AddUser(request):
     url = request.get_full_path()

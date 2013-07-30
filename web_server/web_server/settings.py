@@ -108,7 +108,7 @@ ROOT_URLCONF = 'web_server.urls'
 WSGI_APPLICATION = 'web_server.wsgi.application'
 
 TEMPLATE_DIRS = (
-    "C:\Users\Sivly\web_server\web_server\web_server",
+    "C:\Users\Sivly\web_server\static_files_v2.0",
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
