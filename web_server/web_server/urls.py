@@ -5,4 +5,6 @@ urlpatterns = patterns('',
     url(r'^history/list/$', ChatHistory),
     url(r'^history/list/(?P<history_id>\d+)/$', ChatHistoryIndex),
     url(r'^users/add/$', AddUser),
+    # url(r'/',HomePage),
+    # url(r'/static/(?P<file_path>\s+)/$',StaticFileServer),
 )

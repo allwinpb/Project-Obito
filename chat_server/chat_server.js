@@ -15,21 +15,28 @@ io.sockets.on('connection', function(socket){
 				return;
 			}
 			if(reply){
-				client.sismember("room::"+data.room,data.nickname,function(err,reply){
+				client.sismember("room:"+data.room+":users",data.nickname,function(err,reply){
 					if(reply==1){
 						//user already exists. fail this register request
 						socket.emit('register_fail');
 					}else{
-						client.sadd("room:"+data.room,data.nickname);
+						//init the user, add to room and send confirmation
+						client.sadd("room:"+data.room+":users",data.nickname);
 						name = data.nickname;
 						room = data.room;
 						socket.join(room);
 						socket.emit('register_pass');
-						//update room title
+
+						//set room title if not already exists
 						var placeholder_title = name + "'s room";
-						//add if not exist "room:"" + data.room + "title" placeholder_title
-						//then emit the value in title as room_update
-						socket.emit('room_update',data.room);
+						client.setnx("room:"+data.room+":title",placeholder_title,function(err,reply){
+							client.get("room:"+data.room+":title",function(err,reply){
+								//send room title updates to everyone
+								socket.emit('room_update',reply);
+							});
+						});
+
+						//send hi's and server introductions
 						var msg = {};
 						msg.sender = "SERVER";
 						msg.type = "connect";
@@ -37,9 +44,12 @@ io.sockets.on('connection', function(socket){
 						socket.broadcast.to(data.room).emit('receive_message',msg);
 						msg.content = "Welcome to the chatroom, "+name+"! Say Hi!";
 						socket.emit('receive_message',msg);
-						client.smembers("room:"+room,function(err,reply){
+
+						//send a list of currently active room members to the users
+						client.smembers("room:"+data.room+":users",function(err,reply){
 							io.sockets.in(room).emit('user_list',reply);
 						});
+
 						console.log(data.nickname + " joined " + data.room + ".");
 					}
 				});
@@ -54,8 +64,10 @@ io.sockets.on('connection', function(socket){
 
 	socket.on('chat_message',function(msg){
 		msg.sender = name;
+		msg.timestamp = new Date();
+		//attach this message to redis in order to archive it later
+		client.rpush("room:"+room+":msg",JSON.stringify(msg));
 		socket.broadcast.to(room).emit('receive_message',msg);
-		console.log(name + " sent a message to " + room + ".");
 	});
 
 	socket.on('room_update',function(name){
@@ -66,16 +78,17 @@ io.sockets.on('connection', function(socket){
 		if(room == null)	return;
 		socket.leave(room);
 		client.srem("room:"+room,name);
-		client.scard("room:"+room,function(err,reply){
+		client.scard("room:"+room+":users",function(err,reply){
 			if(reply==0){
-				client.del("room:"+room);
+				console.log('Disassembling ROOM('+room+')...');
 				client.srem("rooms",room);
+				//send all the shit to sql for archiving
+				//django should delete all the associated room keys
 			}
 		});
-		client.smembers("room:"+room,function(err,reply){
+		client.smembers("room:"+room+":users",function(err,reply){
 			io.sockets.in(room).emit('user_list',reply);
 		});
-		console.log(name + " left " + room + ".");
 	});
 });
 
