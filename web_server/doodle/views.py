@@ -15,7 +15,7 @@ def ChatHistoryIndex(request, history_id):
 def AddUser(request):
     url = request.get_full_path()
     par = urlparse.parse_qs(urlparse.urlparse(url).query)
-    User(id = par['id'], user = par['name'], join_date=datetime.datetime.now()).save()
+    User(user_id = par['id'], name = par['name'], join_date=datetime.datetime.now()).save()
     return HttpResponse(status=204)
 
 def HomePage(request):
