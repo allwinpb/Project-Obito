@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from doodle.views import ChatHistory, ChatHistoryIndex, AddUser, HomePage, StaticFileServer, RoomCreator, RoomServer, MessageArchiever
 
 urlpatterns = patterns('',
@@ -11,3 +12,5 @@ urlpatterns = patterns('',
     url(r'^rooms/(?P<room_id>\s+)/$', RoomServer),
     url(r'^/update$', MessageArchiver), #POST
 )
+
+urlpatterns += staticfiles_urlpatterns()
