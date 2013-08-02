@@ -19,6 +19,20 @@ def AddUser(request):
 def HomePage(request):
     return render(request, "welcome.html")
 
+def RoomCreator(request, room_key):
+    # Check if room is valid
+    if room_key == "new":
+        newID = base10_encode(r.scard('rooms')+1000)
+        r.sadd('rooms',newID);
+        return redirect(newID,permanent=False)
+    elif room_key in r.smembers('rooms'):
+        return render(request, 'room.html',{'roomID':room_key})
+    else:
+        return HttpResponse('<html><body><h2>505: NO SUCH ROOM</h2></body></html>')
+
+def RoomServer(request):
+    return HttpResponse(status=200)
+# ==== Stuff which are not views
 ALPHABET = "0123456789"
 
 def base10_encode(num, alphabet=ALPHABET):
@@ -37,15 +51,3 @@ def base10_encode(num, alphabet=ALPHABET):
         arr.append(alphabet[rem])
     arr.reverse()
     return ''.join(arr)
-
-def RoomCreator(request, room_key):
-    # Check if room is valid
-    if room_key == "new":
-        newID = base10_encode(r.scard('rooms')+1000)
-        r.sadd('rooms',newID);
-        return redirect(newID,permanent=False)
-    elif room_key in r.smembers('rooms'):
-        return render(request, 'room.html',{'roomID':room_key})
-    else:
-        return HttpResponse('<html><body><h2>505: NO SUCH ROOM</h2></body></html>')
-
