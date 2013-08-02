@@ -19,10 +19,10 @@ def ChatHistoryIndex(request, history_id):
             user_messages.append(message)
     return render(request, 'history_room.html') #I don't know the name of variable tag you use in html yet
 
+@csrf_exempt
 def AddUser(request):
-    url = request.get_full_path()
-    par = urlparse.parse_qs(urlparse.urlparse(url).query)
-    User(user_id = par['id'], name = par['name'], join_date=datetime.datetime.now()).save()
+    # Assuming that request is always POST
+    (obj, created) = User.objects.get_or_create(user_id=request.POST['id'], name=request.POST['name'], join_date=datetime.datetime.now(), last_visited=datetime.datetime.now())
     return HttpResponse(status=204)
 
 def HomePage(request):
