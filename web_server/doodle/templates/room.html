@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<title>Project Obito | Express Yourself</title>
+	<link type="text/css" rel="stylesheet" href="static/css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="static/css/style.css"/>
+</head>
+
+<body>
+	<!-- Navbar -->
+	<div class="navbar navbar-static-top navbar-inverse">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#">Doodle Chat</a>
+				<ul class="nav pull-right nav-user-controls">
+					<li id="anon-session">
+						<a href="#">
+							<div class="fb-login-button" data-size="large">Connect with Facebook</div>
+						</a>
+					</li>
+					<li id="user-session">
+						<a id="username" href="#">
+							<strong></strong><img class="img-circle">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<br>
+	<!-- modal: USERNAME INPUT -->
+	<div class="modal hide" id="input-usrname" data-keyboard="false" data-backdrop="static">
+		<div class="modal-header">
+			<h3>You're about to join a room!</h3>
+		</div>
+		<div class="modal-body">
+			<p>You're almost there!</p>
+			<form id="anon-username-input">
+				<fieldset>
+					<div id="warning-box"></div>
+					<label>Please enter a nickname:</label>
+					<input id="nickname" type="text" placeholder="Your name here">
+					<input style="display:none" type="text" name="needed_for_chrome_and_ie" value="dont_ask">
+				</fieldset>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button id="anon-username-submit" class="btn btn-primary">Join!</button>
+		</div>
+	</div>
+	<div class="container">
+		<!-- full width spanning header -->
+		<div class="row title">
+			<div class="span12">
+				<h3 id="room-title" class="tooltip-container" contentEditable="true" data-toggle="tooltip" title="Click to edit the Title for this room" data-placement="right">Title</h3>
+				<div class="pull-right input-prepend tooltip-container" data-toggle="tooltip" title="Share link to invite your friends" data-placement="left">
+					<span class="add-on">Room link :</span>
+					<input onclick="this.select()" class="span2 disabled" type="text" value="http://192.241.196.61/rooms/{{roomID}}">
+				</div>
+			</div>
+		</div>
+		<hr>
+		<!-- main chat log + user list -->
+		<div class="row main">
+			<div class="span9 well well-small">
+				<ul class="chat-log unstyled">
+				</ul>
+			</div>
+			<div class="span3 well well-small">
+				<ul class="unstyled" id="user-list-container">
+				</ul>
+			</div>
+		</div>
+		<!-- ui controls -->
+		<div class="row controls">
+			<div class="span12">
+				<div class="tabbable">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a id="text-tab" href="#tab-text" data-toggle="tab"><i class="icon-font"></i></a>
+						</li>
+						<li><a id="doodle-tab" href="#tab-draw" data-toggle="tab"><i class="icon-pencil"></i></a></li>
+						<li id="tab-controls" class="pull-right">
+							<!-- <a href="#" id="doodle-width-select" data-toggle="popover" data-original-title="Choose Width" data-placement="top">
+								[ W ]
+							</a> -->
+							<a href="#" id="doodle-color-select" data-toggle="popover" data-original-title="Choose Color" data-placement="top">
+								<div style='background-color:black'>"</div>
+							</a>
+							<button id="btn-submitw" class="btn btn-info">Submit</button>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane" id="tab-draw"> 	
+							<!-- doodle -->
+							<div class="border-simple"><canvas id="canvas"></canvas></div>
+						</div>
+						<div class="tab-pane active" id="tab-text">
+							<textarea id="text-editor" placeholder="Type here..." rows="5"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+	var roomID = "{{roomID}}";
+	</script>
+	<script type="text/javascript" src="static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="static/js/fb.js"></script>
+	<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="static/js/fabric.all.min.js"></script>
+	<script type="text/javascript" src="static/js/socket.io.min.js"></script>
+	<script type="text/javascript" src="static/js/script.js"></script>
+	<script type="text/javascript" src="static/js/chat_conn.js"></script>
+</body>
+</html>
