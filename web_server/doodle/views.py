@@ -1,6 +1,7 @@
 from doodle.models import GlobalChatHistory, Room, User, UserChatHistory
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, render
+from django.views.decorators.csrf import csrf_exempt
 import datetime, urlparse
 
 def ChatHistory(request):
@@ -10,12 +11,12 @@ def ChatHistory(request):
 def ChatHistoryIndex(request, history_id):
     return render_to_response("history_room.html", {'history': UserChatHistory.objects.get(id=history_id)})
 
-@method_decorator(csrf_exempt)
-def AddUser(request):
-    url = request.get_full_path()
-    par = urlparse.parse_qs(urlparse.urlparse(url).query)
-    User(id = par['id'], user = par['name'], join_date=datetime.datetime.now()).save()
-    return HttpResponse(status=204)
+@csrf_exempt
+    def AddUser(request):
+        url = request.get_full_path()
+        par = urlparse.parse_qs(urlparse.urlparse(url).query)
+        User(id = par['id'], user = par['name'], join_date=datetime.datetime.now()).save()
+        return HttpResponse(status=204)
 
 def HomePage(request):
     return render(request, "welcome.html")
