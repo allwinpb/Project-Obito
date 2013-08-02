@@ -32,6 +32,9 @@ def RoomCreator(request, room_key):
 
 def RoomServer(request):
     return HttpResponse(status=200)
+
+def MessageArchiver(request):
+    return HttpResponse(status=200)
 # ==== Stuff which are not views
 ALPHABET = "0123456789"
 
