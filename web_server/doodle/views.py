@@ -1,8 +1,10 @@
 from doodle.models import GlobalChatHistory, Room, User, UserChatHistory
 from django.http import HttpResponse
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response, render, redirect
 from django.views.decorators.csrf import csrf_exempt
-import datetime, urlparse
+import datetime, urlparse, redis
+
+r = redis.StrictRedis(host="localhost",port=6379,db=0)
 
 def ChatHistory(request, user_id):
     history_list = UserChatHistory.objects.all().get(user = user_id).order_by('-end_time')
@@ -28,26 +30,21 @@ def AddUser(request):
 def HomePage(request):
     return render(request, "welcome.html")
 
-def RoomCreator(request, room_key):
-    # Check if room is valid
-    if room_key == "new":
-        newID = base10_encode(r.scard('rooms')+1000)
-        r.sadd('rooms',newID);
-        return redirect(newID,permanent=False)
-    elif room_key in r.smembers('rooms'):
-        return render(request, 'room.html',{'roomID':room_key})
-    else:
-        return HttpResponse('<html><body><h2>505: NO SUCH ROOM</h2></body></html>')
+def RoomCreator(request):
+    newID = base62_encode(r.scard('rooms')+1000)
+    r.sadd('rooms',newID);
+    return redirect('/rooms/'+newID,permanent=False)
 
 def RoomServer(request,room_id):
     return render_to_response('room.html',{'roomID':room_id})
 
 def MessageArchiver(request):
     return HttpResponse(status=200)
-# ==== Stuff which are not views
-ALPHABET = "0123456789"
 
-def base10_encode(num, alphabet=ALPHABET):
+# ==== Stuff which are not views
+ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+def base62_encode(num, alphabet=ALPHABET):
     """Encode a number in Base X
 
     `num`: The number to encode

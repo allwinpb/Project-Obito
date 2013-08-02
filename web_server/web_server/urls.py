@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     url(r'^users/add/$', AddUser), #POST
     url(r'^$',HomePage),
     url(r'^rooms/new$', RoomCreator),
-    url(r'^rooms/(?P<room_id>\s+)/$', RoomServer),
+    url(r'^rooms/(?P<room_id>\d+)/$', RoomServer),
     url(r'^/update$', MessageArchiver), #POST
 )
 
