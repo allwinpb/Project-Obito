@@ -12,11 +12,11 @@ def ChatHistoryIndex(request, history_id):
     return render_to_response("history_room.html", {'history': UserChatHistory.objects.get(id=history_id)})
 
 @csrf_exempt
-    def AddUser(request):
-        url = request.get_full_path()
-        par = urlparse.parse_qs(urlparse.urlparse(url).query)
-        User(id = par['id'], user = par['name'], join_date=datetime.datetime.now()).save()
-        return HttpResponse(status=204)
+def AddUser(request):
+    url = request.get_full_path()
+    par = urlparse.parse_qs(urlparse.urlparse(url).query)
+    User(id = par['id'], user = par['name'], join_date=datetime.datetime.now()).save()
+    return HttpResponse(status=204)
 
 def HomePage(request):
     return render(request, "welcome.html")
