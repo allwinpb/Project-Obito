@@ -4,14 +4,21 @@ from django.shortcuts import render_to_response, render
 from django.views.decorators.csrf import csrf_exempt
 import datetime, urlparse
 
-def ChatHistory(request):
-    history_list = UserChatHistory.objects.all().order_by('-end_time')
+def ChatHistory(request, user_id):
+    history_list = UserChatHistory.objects.all().get(user = user_id).order_by('-end_time')
     return render_to_response('history_list.html', {'history_list': history_list})
 
 def ChatHistoryIndex(request, history_id):
-    return render_to_response("history_room.html", {'history': UserChatHistory.objects.get(id=history_id)})
+    chat_messages = GlobalChatHistory.objects.get(room = history_id)
+    user_chat_history = UserChatHistory.objects.get(id = history_id)
+    join = user_chat_history.join_time
+    end = user_chat_history.end_time
+    user_messages = []
+    for message in chat_messages:
+        if message.timestamp < end and message.timestamp > join:
+            user_messages.append(message)
+    return render(request, 'history_room.html') #I don't know the name of variable tag you use in html yet
 
-@csrf_exempt
 def AddUser(request):
     url = request.get_full_path()
     par = urlparse.parse_qs(urlparse.urlparse(url).query)
