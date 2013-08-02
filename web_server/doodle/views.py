@@ -10,6 +10,7 @@ def ChatHistory(request):
 def ChatHistoryIndex(request, history_id):
     return render_to_response("history_room.html", {'history': UserChatHistory.objects.get(id=history_id)})
 
+@method_decorator(csrf_exempt)
 def AddUser(request):
     url = request.get_full_path()
     par = urlparse.parse_qs(urlparse.urlparse(url).query)
@@ -30,8 +31,8 @@ def RoomCreator(request, room_key):
     else:
         return HttpResponse('<html><body><h2>505: NO SUCH ROOM</h2></body></html>')
 
-def RoomServer(request):
-    return HttpResponse(status=200)
+def RoomServer(request,room_id):
+    return render_to_response('room.html',{'roomID':room_id})
 
 def MessageArchiver(request):
     return HttpResponse(status=200)
