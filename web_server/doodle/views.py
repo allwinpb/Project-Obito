@@ -38,7 +38,9 @@ def AddUser(request):
 	return HttpResponse(status=204)
 
 def UserChatCreator(request):
-    (obj, created) = UserChatHistory.objects.get_or_create(user=request.POST['user'], room=base62_decode(str(request.POST['id'])), join_time=request.POST['join_time'], end_time=request.POST['end_time'])
+	user_key = User.objects.get(user_id=request.POST['user'])
+	room_key = Room.objects.get(room_id=base62_decode(str(request.POST['id'])))
+    (obj, created) = UserChatHistory.objects.get_or_create(user=user_key, room=room_key, join_time=request.POST['join_time'], end_time=request.POST['end_time'])
     return HttpResponse(status=200)
 
 def HomePage(request):

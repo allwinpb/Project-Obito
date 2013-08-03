@@ -86,8 +86,8 @@ io.sockets.on('connection', function(socket){
 		if(room == null)	return;
 		time_end = new Date();
 		//TODO: Send user chat history
-		console.log('UPDATING USERCHATHISTORY');
 		if(userObj.usesFB==true){
+			console.log('FB user leaving. Sending session info');
 			bridge.post('http://localhost:8000/update/session',{
 				'user':userObj.userObj.id,
 				'id':room,
@@ -96,14 +96,15 @@ io.sockets.on('connection', function(socket){
 			},function(a,b,c){});
 		}
 		socket.leave(room);
-		client.srem("room:"+room+":users",name);
-		client.scard("room:"+room+":users",function(err,reply){
-			if(reply==0){
-				console.log('Disassembling ROOM('+room+')...');
-				//send all the shit to sql for archiving
-				//django should delete all the associated room keys
-				bridge.post('http://localhost:8000/update',{'id':room},function(error,resp,body){});
-			}
+		client.srem("room:"+room+":users",name,function(){
+			client.scard("room:"+room+":users",function(err,reply){
+				if(reply==0){
+					console.log('Disassembling ROOM('+room+')...');
+					//send all the shit to sql for archiving
+					//django should delete all the associated room keys
+					bridge.post('http://localhost:8000/update',{'id':room},function(error,resp,body){});
+				}
+			});
 		});
 		client.smembers("room:"+room+":users",function(err,reply){
 			io.sockets.in(room).emit('user_list',reply);
