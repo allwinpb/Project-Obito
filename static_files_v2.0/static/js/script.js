@@ -177,6 +177,15 @@ function prepareCanvasOutput(id,msg){
 	outputCanvas.renderAll();
 }
 
+//prepare canvas output, no writing into log file
+function CanvasOutput(msg){
+	var outputCanvas = new fabric.StaticCanvas();
+	outputCanvas.setWidth(msg.width);
+	outputCanvas.setHeight(msg.height);
+	outputCanvas.loadFromJSON(msg.content);
+	outputCanvas.renderAll();
+}
+
 function showModalWarning(warning){
 	var title,content;
 	if(warning=="register-fail"){
