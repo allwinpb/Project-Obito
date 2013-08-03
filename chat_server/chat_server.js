@@ -93,7 +93,7 @@ io.sockets.on('connection', function(socket){
 				'id':room,
 				'join_time': time_join,
 				'end_time':time_end
-			},function(a,b,c){});
+			},function(a,b,c){console.log(a)});
 		}
 		socket.leave(room);
 		client.srem("room:"+room+":users",name,function(){
@@ -102,7 +102,7 @@ io.sockets.on('connection', function(socket){
 					console.log('Disassembling ROOM('+room+')...');
 					//send all the shit to sql for archiving
 					//django should delete all the associated room keys
-					bridge.post('http://localhost:8000/update',{'id':room},function(error,resp,body){});
+					bridge.post('http://localhost:8000/update',{'id':room},function(error,resp,body){console.log(error)});
 				}
 			});
 		});
