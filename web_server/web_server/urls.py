@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from doodle.views import ChatHistory, ChatHistoryIndex, AddUser, HomePage, RoomCreator, RoomServer, MessageArchiver
+from doodle.views import ChatHistory, ChatHistoryIndex, AddUser, HomePage, RoomCreator, RoomServer, MessageArchiver, UserChatCreator
 
 urlpatterns = patterns('',
     url(r'^history/list/$', ChatHistory),
