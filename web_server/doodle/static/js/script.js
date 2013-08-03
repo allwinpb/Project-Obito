@@ -242,7 +242,7 @@ function logMessage(msg){
 			prepareCanvasOutput('doodle'+id,msg);
 		},200);
 	}
-	$(".main > div").animate({ scrollTop: $(".main > div").scrollHeight}, 1000);
+	$(".main > div").scrollTop($(".main > div")[0].scrollHeight);
 }
 
 function getMessageObject(){
