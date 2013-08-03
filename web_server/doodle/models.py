@@ -23,7 +23,7 @@ class User(models.Model):
 
 class Room(models.Model):
     room_id = models.IntegerField(primary_key=True)
-    title = models.CharField(max_length=20, blank=True)
+    title = models.CharField(max_length=30, blank=True)
     created = models.DateTimeField()
     expired = models.DateTimeField(null=True)
 

@@ -2,7 +2,8 @@ from doodle.models import GlobalChatHistory, Room, User, UserChatHistory
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, render, redirect
 from django.views.decorators.csrf import csrf_exempt
-import datetime, urlparse, redis, json
+from django.utils import timmezone
+import redis, json
 
 r = redis.StrictRedis(host="localhost",port=6379,db=0)
 
@@ -26,7 +27,7 @@ def ChatHistoryIndex(request, history_id):
 @csrf_exempt
 def AddUser(request):
 	# Assuming that request is always POST
-	(obj, created) = User.objects.get_or_create(user_id=request.POST['id'], name=request.POST['name'], join_date=datetime.datetime.now(), last_visited=datetime.datetime.now())
+	(obj, created) = User.objects.get_or_create(user_id=request.POST['id'], name=request.POST['name'], join_date=timezone.now(), last_visited=timezone.now())
 	return HttpResponse(status=204)
 
 def HomePage(request):
@@ -37,7 +38,7 @@ def RoomCreator(request):
 	r.incr('rooms:nextID')
 	newID = base62_encode(int(r.get('rooms:nextID')))
 	r.sadd('rooms',newID)
-	r.set('room:'+newID+':created',datetime.datetime.now())
+	r.set('room:'+newID+':created',timezone.now())
 	return redirect('/rooms/'+newID,permanent=False)
 
 def RoomServer(request,room_id):
@@ -55,11 +56,11 @@ def MessageArchiver(request):
 	# convert roomID to number (base 10)
 	roomID = base62_decode(str(roomID))
 
-	Room.objects.create(
+	newRoom = Room.objects.create(
 		room_id=roomID,
 		title=roomTitle,
 		created=createTime,
-		expired=datetime.datetime.now()
+		expired=timezone.now(),
 	)
 
 	for msg in r.lrange('room:'+roomID+':msg',0,-1):
@@ -69,7 +70,7 @@ def MessageArchiver(request):
 			content=msg_obj['content'],
 			msg_type=msg_obj['type'],
 			author=msg_obj['sender'],
-			room=roomID,
+			room=newRoom,
 			timestamp=msg_obj['timestamp'],
 		)
 	pipe = r.pipeline()
