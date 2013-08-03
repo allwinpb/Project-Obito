@@ -1,7 +1,7 @@
 from django.db import models
 
 class GlobalChatHistory(models.Model):
-    msg_id = models.IntegerField(primary_key=True)
+    msg_id = models.AutoField(primary_key=True)
     content = models.TextField()
     msg_type = models.CharField(max_length=10)
     author = models.CharField(max_length=30)    
@@ -9,7 +9,7 @@ class GlobalChatHistory(models.Model):
     timestamp = models.DateTimeField()
 
 class UserChatHistory(models.Model):
-    history_id = models.IntegerField(primary_key=True)
+    history_id = models.AutoField(primary_key=True)
     user = models.ForeignKey('User')
     room = models.ForeignKey('Room')
     join_time = models.DateTimeField()
@@ -22,7 +22,7 @@ class User(models.Model):
     last_visited = models.DateTimeField()
 
 class Room(models.Model):
-    room_id = models.IntegerField(primary_key=True)
+    room_id = models.AutoField(primary_key=True)
     title = models.TextField()
     created = models.DateTimeField()
     expired = models.DateTimeField(null=True)
