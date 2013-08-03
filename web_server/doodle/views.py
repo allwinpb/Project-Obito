@@ -80,6 +80,7 @@ def MessageArchiver(request):
 	pipe.delete('room:'+roomID+':created')
 	pipe.srem('rooms',roomID)
 	pipe.execute()
+	return HttpResponse(status=200)
 
 # ==== Stuff which are not views
 ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
