@@ -1,7 +1,10 @@
 rooms --> set containing ID's of all current rooms
 
+rooms:nextID
 room:<***>:users --> set containing ID's of all people currently attached to <***>
 
 room:<***>:title --> title of the room with id <***>
 
 room:<***>:msg --> list of json strings denoting messages in that room
+
+room:<***>:created --> time when room was created

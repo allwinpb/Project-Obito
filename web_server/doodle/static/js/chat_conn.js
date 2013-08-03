@@ -47,6 +47,7 @@ function registerUser(){
 function submitMessage(){
 	var msg = getMessageObject();
 	socket.emit('chat_message',msg);
+	console.log('> Sending message ('+msg.type+')');
 	logMessage(msg);
 	//add callback here
 }

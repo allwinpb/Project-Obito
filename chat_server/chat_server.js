@@ -72,12 +72,13 @@ io.sockets.on('connection', function(socket){
 
 	socket.on('room_update',function(name){
 		socket.broadcast.to(room).emit('room_update',name);
+
 	});
 
 	socket.on('disconnect',function(){
 		if(room == null)	return;
 		socket.leave(room);
-		client.srem("room:"+room,name);
+		client.srem("room:"+room+":users",name);
 		client.scard("room:"+room+":users",function(err,reply){
 			if(reply==0){
 				console.log('Disassembling ROOM('+room+')...');

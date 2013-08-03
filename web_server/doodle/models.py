@@ -4,7 +4,7 @@ class GlobalChatHistory(models.Model):
     msg_id = models.IntegerField(primary_key=True)
     content = models.TextField()
     msg_type = models.CharField(max_length=10)
-    author = models.ForeignKey('User')
+    author = models.CharField(max_length=30)    
     room = models.ForeignKey('Room')
     timestamp = models.DateTimeField()
 

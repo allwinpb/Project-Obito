@@ -39,7 +39,7 @@ $(function(){
 				updateRoom(roomTitle);
 			}
 		}
-	}).on('keydown',function(e){
+	}).on('keyup',function(e){
 		if(e.which==13){
 			e.preventDefault();
 			focusChat();
@@ -49,11 +49,11 @@ $(function(){
 
 	//submit logic
 	$('#btn-submit').on('click',function(){
-		submitMessage(getMessageObject());
+		submitMessage();
 	});
 	$('#text-editor').on('keyup',function(e){
 		if(e.which==13){
-			submitMessage(getMessageObject());
+			submitMessage();
 		}
 	});
 

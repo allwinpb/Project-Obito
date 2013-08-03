@@ -96,6 +96,8 @@ hr{
 }
 .main > div{
 	height: 100%;
+	overflow-x:hidden;
+	overflow-y:auto;
 }
 .controls > div{
 	height: 20%;
