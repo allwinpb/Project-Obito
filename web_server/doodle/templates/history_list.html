@@ -9,17 +9,20 @@
 	<div class="navbar navbar-static-top navbar-inverse">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand" href="#">Doodle Chat</a>
+				<a class="brand" href="#">Project Obito</a>
 				<ul class="nav pull-right nav-user-controls">
 					<li id="anon-session">
 						<a href="#">
 							<div class="fb-login-button" data-size="large">Connect with Facebook</div>
 						</a>
 					</li>
-					<li id="user-session">
-						<a id="username" href="#">
+					<li id="user-session" class="dropdown">
+						<a id="username" href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<strong></strong><img class="img-circle">
 						</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="username">
+							<li><a href="/history/list">Chat History</a></li>
+						</ul>
 					</li>
 				</ul>
 			</div>
@@ -43,10 +46,10 @@
 						</tr>
 					</thead>
 					<tbody>	
-						{% for history in history_list %}			
+						{% for history in history_list %}
 							<tr>
-								<td>{{history.id}}</td>
-								<td>{{history.room.id}}</td>
+								<td> </td>
+								<td><a href="/history/list/{{history.id}}">{{history.room.title}}</a></td>
 								<td>{{history.join_time}}</td>
 							</tr>
 						{% endfor %}
