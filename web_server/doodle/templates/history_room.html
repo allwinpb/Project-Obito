@@ -42,25 +42,26 @@
 			<div class="span9 well well-small">
 				<ul class="chat-log unstyled">
 					{% for msg in messages %}
-						<li class="chat-server">-- '+msg.content+' --</li><br>
-						{% if msg.author == user %}
+						{% if msg.author == "SERVER" %}
+							<li class="chat-server">-- {{ msg.content }} --</li><br>
+						{% elif msg.author == user %}
 							<li class="chat-user">
-								<small>{ msg.author } :</small>
+								<small>{{ msg.author }} :</small>
 								{% if msg.type == "text" %}
-									<p> { msg.content } </p>
+									<p> {{ msg.content }} </p>
 								{% else %}
-									<canvas id="doodle">{ msg.content }</canvas>
+									<canvas id="doodle" onload = "CanvasOutput(msg.content)"></canvas>
 								{% endif %}
-							</li>
+							</li><br>
 						{% else %}
 							<li class="chat-other">
-								<small>{ msg.author } :</small>
+								<small>{{ msg.author }} :</small>
 								{% if msg.type == "text" %}
-									<p> { msg.content } </p>
+									<p> {{ msg.content }} </p>
 								{% else %}
-									<canvas id="doodle">{ msg.content }</canvas>
+									<canvas id="doodle" onload = "CanvasOutput(msg.content)"></canvas>
 								{% endif %}
-							</li>
+							</li><br>
 						{% endif %}
 					{% end for %}
 				</ul>
