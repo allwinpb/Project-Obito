@@ -9,13 +9,13 @@ r = redis.StrictRedis(host="localhost",port=6379,db=0)
 
 @csrf_exempt
 def ChatHistory(request, user_id):
-	history_list = UserChatHistory.objects.all().get(user = user_id).order_by('-end_time')
+	history_list = UserChatHistory.objects.all().filter(user__user_id = user_id).order_by('-end_time')
 	return render_to_response('history_list.html', {'history_list': history_list})
 
 @csrf_exempt
 def ChatHistoryIndex(request, history_id):
-	chat_messages = GlobalChatHistory.objects.get(room = history_id)
-	user_chat_history = UserChatHistory.objects.get(id = history_id)
+	chat_messages = GlobalChatHistory.objects.filter(room__room_id = history_id)
+	user_chat_history = UserChatHistory.objects.get(history_id = history_id)
 	join = user_chat_history.join_time
 	end = user_chat_history.end_time
 	user_messages = []
