@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^rooms/new$', RoomCreator),
     url(r'^rooms/(?P<room_id>[a-zA-z0-9]+)/$', RoomServer),
     url(r'^update$', MessageArchiver), #POST
+    url(r'^update/session/$', UserChatCreator),
 )
 
 urlpatterns += staticfiles_urlpatterns()

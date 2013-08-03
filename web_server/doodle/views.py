@@ -31,6 +31,10 @@ def AddUser(request):
 	(obj, created) = User.objects.get_or_create(user_id=request.POST['id'], name=request.POST['name'], join_date=timezone.now(), last_visited=timezone.now())
 	return HttpResponse(status=204)
 
+def UserChatCreator(request):
+    (obj, created) = UserChatHistory.objects.get_or_create(user=request.POST['user'], room=base62_decode(str(request.POST['id'])), join_time=request.POST['join_time'], end_time=request.POST['end_time'])
+    return HttpResponse(status=200)                                                            
+
 def HomePage(request):
 	return render(request, "welcome.html")
 
