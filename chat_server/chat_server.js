@@ -86,6 +86,7 @@ io.sockets.on('connection', function(socket){
 		if(room == null)	return;
 		time_end = new Date();
 		//TODO: Send user chat history
+		console.log('UPDATING USERCHATHISTORY');
 		if(userObj.usesFB==true){
 			bridge.post('http://localhost:8000/update/session',{
 				'user':userObj.userObj.id,
