@@ -53,7 +53,7 @@ def MessageArchiver(request):
 	roomTitle = r.get('room:'+roomID+':title')
 	createTime = r.get('room:'+roomID+':created')
 
-	log.warning(roomTitle + ':' + createTime)
+	log.warning(roomTitle + ':' + str(createTime))
 	# convert roomID to number (base 10)
 	roomID = base62_decode(str(roomID))
 
