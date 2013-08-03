@@ -41,9 +41,12 @@ $(function(){
 		}
 	}).on('keyup',function(e){
 		if(e.which==13){
-			e.preventDefault();
 			focusChat();
 			//would call the blur event above
+		}
+	}).on('keydown',function(e){
+		if(e.which==13){
+			e.preventDefault();
 		}
 	});
 
@@ -54,6 +57,10 @@ $(function(){
 	$('#text-editor').on('keyup',function(e){
 		if(e.which==13){
 			submitMessage();
+		}
+	}).on('keydown',function(e){
+		if(e.which==13){
+			e.preventDefault();
 		}
 	});
 

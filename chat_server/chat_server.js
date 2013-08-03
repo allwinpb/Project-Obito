@@ -72,7 +72,7 @@ io.sockets.on('connection', function(socket){
 
 	socket.on('room_update',function(name){
 		socket.broadcast.to(room).emit('room_update',name);
-
+		client.set('room:'+room+':title',name);
 	});
 
 	socket.on('disconnect',function(){
