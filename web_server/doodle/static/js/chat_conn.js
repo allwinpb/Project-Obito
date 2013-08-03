@@ -1,5 +1,5 @@
 /* Chat Server */
-var chat_server = null;//"http://192.241.196.61:8888";
+var chat_server = "http://192.241.196.61:8888";
 var socket = null;
 $(function(){
 	socket = io.connect(chat_server);
