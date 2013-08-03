@@ -33,7 +33,7 @@ def HomePage(request):
 def RoomCreator(request):
 	# increment nextID
 	r.incr('rooms:nextID')
-	newID = base62_encode(int(r.get('rooms:nextID'))
+	newID = base62_encode(int(r.get('rooms:nextID')))
 	r.sadd('rooms',newID)
 	r.set('room:'+newID+':created',datetime.datetime.now())
 	return redirect('/rooms/'+newID,permanent=False)
