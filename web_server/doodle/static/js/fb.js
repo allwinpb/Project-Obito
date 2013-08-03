@@ -22,7 +22,7 @@ window.fbAsyncInit = function() {
 				userName = response.name;
 				$('.nav-user-controls #username > strong').text(response.name);
 				userSignedIn = true;
-				$.post('/users/add',response); //simply send along the details, ignore return
+				$.post('/users/add/',response); //simply send along the details, ignore return
 			});
 			FB.api('/me/picture?redirect=false&type=square',function(response){
 				$('.nav-user-controls #username > img').attr('src',response.data.url);

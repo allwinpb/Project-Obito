@@ -81,7 +81,6 @@ io.sockets.on('connection', function(socket){
 		client.scard("room:"+room+":users",function(err,reply){
 			if(reply==0){
 				console.log('Disassembling ROOM('+room+')...');
-				client.srem("rooms",room);
 				//send all the shit to sql for archiving
 				//django should delete all the associated room keys
 			}
