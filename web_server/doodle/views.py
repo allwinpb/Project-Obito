@@ -64,7 +64,7 @@ def MessageArchiver(request):
 	)
 
 	for msg in r.lrange('room:'+roomID+':msg',0,-1):
-		msg_obj = json.load(msg)
+		msg_obj = json.loads(msg)
 		# TODO: COMMIT msg_obj to GlobalChatHistory
 		GlobalChatHistory.objects.create(
 			content=msg_obj['content'],
