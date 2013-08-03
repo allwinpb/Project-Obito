@@ -55,10 +55,9 @@ def MessageArchiver(request):
 
 	log.warning(roomTitle + ':' + str(createTime))
 	# convert roomID to number (base 10)
-	roomID = base62_decode(str(roomID))
 
 	newRoom = Room.objects.create(
-		room_id=roomID,
+		room_id=base62_decode(str(roomID)),
 		title=roomTitle,
 		created=createTime,
 		expired=timezone.now(),
