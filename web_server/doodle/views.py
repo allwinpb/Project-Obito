@@ -9,7 +9,8 @@ r = redis.StrictRedis(host="localhost",port=6379,db=0)
 log = logging.getLogger(__name__)
 
 @csrf_exempt
-def ChatHistory(request, user_id):
+def ChatHistory(request):
+	user_id = request.COOKIES.get('user_id')
 	history_list = UserChatHistory.objects.all().filter(user__user_id = user_id).order_by('-end_time')
 	return render_to_response('history_list.html', {'history_list': history_list})
 
