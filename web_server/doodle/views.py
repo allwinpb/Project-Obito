@@ -2,7 +2,7 @@ from doodle.models import GlobalChatHistory, Room, User, UserChatHistory
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, render, redirect
 from django.views.decorators.csrf import csrf_exempt
-from django.utils import timmezone
+from django.utils import timezone
 import redis, json
 
 r = redis.StrictRedis(host="localhost",port=6379,db=0)
