@@ -15,15 +15,17 @@ def ChatHistory(request, user_id):
 
 @csrf_exempt
 def ChatHistoryIndex(request, history_id):
-	chat_messages = GlobalChatHistory.objects.filter(room__room_id = history_id)
-	user_chat_history = UserChatHistory.objects.get(history_id = history_id)
-	join = user_chat_history.join_time
-	end = user_chat_history.end_time
-	user_messages = []
-	for message in chat_messages:
-		if message.timestamp < end and message.timestamp > join:
-			user_messages.append(message)
-	return render(request, 'history_room.html') #I don't know the name of variable tag you use in html yet
+    user_chat_history = UserChatHistory.objects.get(history_id = history_id)
+    global_chat_history = GlobalChatHistory.objects.all()
+    join = user_chat_history.join_time
+    end = user_chat_history.end_time
+    room = user_chat_history.room
+
+    user_messages = []
+    for message in global_chat_history:
+        if message.room == room and message.timestamp < end and message.timestamp > join:
+            user_messages.append(message)
+    return render(request, 'history_room.html') #I don't know the name of variable tag you use in html yet
 
 @csrf_exempt
 def AddUser(request):
