@@ -4,6 +4,8 @@ var io = require('socket.io').listen(app);
 var redis = require('redis');
 var client = redis.createClient();
 
+var bridge = require('request');
+
 io.sockets.on('connection', function(socket){
 	var room = null;
 	var name = null;
@@ -84,6 +86,7 @@ io.sockets.on('connection', function(socket){
 				console.log('Disassembling ROOM('+room+')...');
 				//send all the shit to sql for archiving
 				//django should delete all the associated room keys
+				bridge.post('http://localhost/update',{'id':room},function(error,resp,body){});
 			}
 		});
 		client.smembers("room:"+room+":users",function(err,reply){
