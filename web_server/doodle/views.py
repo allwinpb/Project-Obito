@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
-import redis, json
+import redis, json, logging
 
 r = redis.StrictRedis(host="localhost",port=6379,db=0)
+log = logging.getLogger(__name__)
 
 @csrf_exempt
 def ChatHistory(request, user_id):
@@ -40,7 +41,6 @@ def RoomCreator(request):
 	r.sadd('rooms',newID)
 	r.set('room:'+newID+':created',timezone.now())
 	return redirect('/rooms/'+newID,permanent=False)
-
 def RoomServer(request,room_id):
 	return render_to_response('room.html',{'roomID':room_id})
 
@@ -53,6 +53,7 @@ def MessageArchiver(request):
 	roomTitle = r.get('room:'+roomID+':title')
 	createTime = r.get('room:'+roomID+':created')
 
+	log.warning(roomTitle + ':' + createTime)
 	# convert roomID to number (base 10)
 	roomID = base62_decode(str(roomID))
 
