@@ -45,6 +45,28 @@
 			</div>
 			<div class="span3 well well-small">
 				<ul class="unstyled" id="user-list-container">
+					{% for msg in messages %}
+						<li class="chat-server">-- '+msg.content+' --</li><br>
+						{% if msg.author == user %}
+							<li class="chat-user">
+								<small>{ msg.author } :</small>
+								{% if msg.type == "text" %}
+									<p> { msg.content } </p>
+								{% else %}
+									<canvas id="doodle">{ msg.content }</canvas>
+								{% endif %}
+							</li>
+						{% else %}
+							<li class="chat-other">
+								<small>{ msg.author } :</small>
+								{% if msg.type == "text" %}
+									<p> { msg.content } </p>
+								{% else %}
+									<canvas id="doodle">{ msg.content }</canvas>
+								{% endif %}
+							</li>
+						{% endif %}
+					{% end for %}
 				</ul>
 			</div>
 		</div>
