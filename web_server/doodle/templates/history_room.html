@@ -42,10 +42,6 @@
 		<div class="row main">
 			<div class="span9 well well-small">
 				<ul class="chat-log unstyled">
-				</ul>
-			</div>
-			<div class="span3 well well-small">
-				<ul class="unstyled" id="user-list-container">
 					{% for msg in messages %}
 						<li class="chat-server">-- '+msg.content+' --</li><br>
 						{% if msg.author == user %}
@@ -68,6 +64,10 @@
 							</li>
 						{% endif %}
 					{% end for %}
+				</ul>
+			</div>
+			<div class="span3 well well-small">
+				<ul class="unstyled" id="user-list-container">
 				</ul>
 			</div>
 		</div>
