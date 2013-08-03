@@ -6,10 +6,12 @@ import datetime, urlparse, redis, json
 
 r = redis.StrictRedis(host="localhost",port=6379,db=0)
 
+@csrf_exempt
 def ChatHistory(request, user_id):
 	history_list = UserChatHistory.objects.all().get(user = user_id).order_by('-end_time')
 	return render_to_response('history_list.html', {'history_list': history_list})
 
+@csrf_exempt
 def ChatHistoryIndex(request, history_id):
 	chat_messages = GlobalChatHistory.objects.get(room = history_id)
 	user_chat_history = UserChatHistory.objects.get(id = history_id)
@@ -41,6 +43,7 @@ def RoomCreator(request):
 def RoomServer(request,room_id):
 	return render_to_response('room.html',{'roomID':room_id})
 
+@csrf_exempt
 def MessageArchiver(request):
 	# Assuming always POST
 	roomID = request.POST['id']
@@ -73,6 +76,7 @@ def MessageArchiver(request):
 	pipe.delete('room:'+roomID+':users')
 	pipe.delete('room:'+roomID+':title')
 	pipe.delete('room:'+roomID+':msg')
+	pipe.delete('room:'+roomID+':created')
 	pipe.srem('rooms',roomID)
 	pipe.execute()
 

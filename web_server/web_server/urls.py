@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^$',HomePage),
     url(r'^rooms/new$', RoomCreator),
     url(r'^rooms/(?P<room_id>[a-zA-z0-9]+)/$', RoomServer),
-    url(r'^/update$', MessageArchiver), #POST
+    url(r'^update$', MessageArchiver), #POST
 )
 
 urlpatterns += staticfiles_urlpatterns()
