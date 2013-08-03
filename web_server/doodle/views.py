@@ -33,8 +33,8 @@ def HomePage(request):
 def RoomCreator(request):
 	# increment nextID
 	r.incr('rooms:nextID')
-	newID = base62_encode(r.get('rooms:nextID'))
-	r.sadd('rooms',newID);
+	newID = base62_encode(int(r.get('rooms:nextID'))
+	r.sadd('rooms',newID)
 	r.set('room:'+newID+':created',datetime.datetime.now())
 	return redirect('/rooms/'+newID,permanent=False)
 
@@ -50,7 +50,7 @@ def MessageArchiver(request):
 	createTime = r.get('room:'+roomID+':created')
 
 	# convert roomID to number (base 10)
-	roomID = base62_decode(roomID)
+	roomID = base62_decode(str(roomID))
 
 	Room.objects.create(
 		room_id=roomID,
