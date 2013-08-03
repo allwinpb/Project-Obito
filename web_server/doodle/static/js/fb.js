@@ -1,7 +1,7 @@
 //TODO: http:// to // in fb sdk async
 
 var userSignedIn = null;
-
+var user = null;
 window.fbAsyncInit = function() {
 	// init the FB JS SDK
 	FB.init({
@@ -22,6 +22,7 @@ window.fbAsyncInit = function() {
 				userName = response.name;
 				$('.nav-user-controls #username > strong').text(response.name);
 				userSignedIn = true;
+				user = response;
 				$.post('/users/add/',response); //simply send along the details, ignore return
 			});
 			FB.api('/me/picture?redirect=false&type=square',function(response){
@@ -31,6 +32,7 @@ window.fbAsyncInit = function() {
 			$('#user-session').css('display','block');
 		}else{
 			//not connected through facebook
+			user = null;
 			$('#anon-session').css('display','block');
 			$('#user-session').css('display','none');
 			userSignedIn = false;

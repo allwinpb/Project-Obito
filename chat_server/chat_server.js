@@ -9,6 +9,9 @@ var bridge = require('request');
 io.sockets.on('connection', function(socket){
 	var room = null;
 	var name = null;
+	var time_join = null;
+	var time_end = null;
+	var userObj = null;
 	socket.on('register',function(data){
 		//Check if room exists
 		client.sismember("rooms",data.room,function(err,reply){
@@ -28,6 +31,8 @@ io.sockets.on('connection', function(socket){
 						room = data.room;
 						socket.join(room);
 						socket.emit('register_pass');
+						userObj = data;
+						time_join = new Date();
 
 						//set room title if not already exists
 						var placeholder_title = name + "'s room";
@@ -79,6 +84,16 @@ io.sockets.on('connection', function(socket){
 
 	socket.on('disconnect',function(){
 		if(room == null)	return;
+		time_end = new Date();
+		//TODO: Send user chat history
+		if(userObj.usesFB==true){
+			bridge.post('http://localhost/update/session',{
+				'user':userObj.userObj.id,
+				'id':room,
+				'join_time': time_join,
+				'end_time':time_end
+			},function(a,b,c){});
+		}
 		socket.leave(room);
 		client.srem("room:"+room+":users",name);
 		client.scard("room:"+room+":users",function(err,reply){

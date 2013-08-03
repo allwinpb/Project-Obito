@@ -35,7 +35,7 @@ def AddUser(request):
 
 def UserChatCreator(request):
     (obj, created) = UserChatHistory.objects.get_or_create(user=request.POST['user'], room=base62_decode(str(request.POST['id'])), join_time=request.POST['join_time'], end_time=request.POST['end_time'])
-    return HttpResponse(status=200)                                                            
+    return HttpResponse(status=200)
 
 def HomePage(request):
 	return render(request, "welcome.html")

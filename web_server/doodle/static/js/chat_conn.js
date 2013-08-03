@@ -39,6 +39,8 @@ $(function(){
 function registerUser(){
 	var data = new Object();
 	data.nickname = userName;
+	data.usesFB = userSignedIn;
+	data.userObj = user;
 	data.room = roomID;
 	socket.emit('register',data);
 	console.log('> Attempting Registration');
