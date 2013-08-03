@@ -23,6 +23,7 @@ window.fbAsyncInit = function() {
 				$('.nav-user-controls #username > strong').text(response.name);
 				userSignedIn = true;
 				user = response;
+				document.cookie="user_id="+user.id;
 				$.post('/users/add/',response); //simply send along the details, ignore return
 			});
 			FB.api('/me/picture?redirect=false&type=square',function(response){

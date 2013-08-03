@@ -241,8 +241,8 @@ function logMessage(msg){
 		setTimeout(function(){
 			prepareCanvasOutput('doodle'+id,msg);
 		},200);
-		
 	}
+	$(".chat-log").animate({ scrollTop: $(".chat-log").scrollHeight}, 1000);
 }
 
 function getMessageObject(){
