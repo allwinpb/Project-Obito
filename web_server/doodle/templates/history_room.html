@@ -59,7 +59,7 @@
 								{% if msg.msg_type == "text" %}
 									<p> {{ msg.content }} </p>
 								{% else %}
-									<canvas id="doodle" onload = "CanvasOutput(msg.content)"></canvas>
+									<canvas id="doodle" onload = "CanvasOutput({{msg.content}})"></canvas>
 								{% endif %}
 							</li><br>
 						{% endif %}
