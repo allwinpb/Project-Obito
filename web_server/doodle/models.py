@@ -16,7 +16,7 @@ class UserChatHistory(models.Model):
     end_time = models.DateTimeField()
 
 class User(models.Model):
-    user_id = models.IntegerField(primary_key=True)
+    user_id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=30)
     join_date = models.DateTimeField()
     last_visited = models.DateTimeField()
