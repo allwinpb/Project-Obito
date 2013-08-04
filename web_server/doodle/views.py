@@ -40,7 +40,7 @@ def AddUser(request):
 @csrf_exempt
 def UserChatCreator(request):
     user_key = User.objects.get(user_id=request.POST['user'])
-    room_key = Room.objects.get(room_id=base62_decode(str(request.POST['id'])))
+    room_key = base62_decode(str(request.POST['id']))# Room.objects.get(room_id=base62_decode(str(request.POST['id'])))
     (obj, created) = UserChatHistory.objects.get_or_create(user=user_key, room=room_key, join_time=request.POST['join_time'], end_time=request.POST['end_time'])
     return HttpResponse(status=200)
 

@@ -87,8 +87,8 @@ io.sockets.on('connection', function(socket){
 		time_end = new Date();
 		//TODO: Send user chat history
 		if(userObj.usesFB==true){
-			console.log('FB user leaving. Sending session info');
-			bridge.post('http://localhost:8000/update/session',{
+			console.log('Sending info : '+userObj.userObj.id);
+			bridge.post('http://localhost:8000/update/session/',{
 				'user':userObj.userObj.id,
 				'id':room,
 				'join_time': time_join,
@@ -102,7 +102,7 @@ io.sockets.on('connection', function(socket){
 					console.log('Disassembling ROOM('+room+')...');
 					//send all the shit to sql for archiving
 					//django should delete all the associated room keys
-					bridge.post('http://localhost:8000/update',{'id':room},function(error,resp,body){});
+					bridge.post('http://localhost:8000/update/',{'id':room},function(error,resp,body){});
 				}
 			});
 		});
