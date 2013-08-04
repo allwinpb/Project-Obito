@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
+from datetime import datetime
 import redis, json, logging
 
 r = redis.StrictRedis(host="localhost",port=6379,db=0)
@@ -40,7 +41,7 @@ def AddUser(request):
 @csrf_exempt
 def UserChatCreator(request):
     user_key = User.objects.get(user_id=request.POST['user'])
-    room_key = base62_decode(str(request.POST['id']))# Room.objects.get(room_id=base62_decode(str(request.POST['id'])))
+    room_key = Room.objects.get(room_id=base62_decode(str(request.POST['id'])))
     (obj, created) = UserChatHistory.objects.get_or_create(user=user_key, room=room_key, join_time=request.POST['join_time'], end_time=request.POST['end_time'])
     return HttpResponse(status=200)
 
@@ -87,11 +88,23 @@ def MessageArchiver(request):
             room=newRoom,
             timestamp=msg_obj['timestamp'],
         )
+
+    for session in r.smembers('room:'+roomID+':sessions'):
+        session_obj = json.loads(session)
+        sessionUser = User.objects.get(pk=int(session_obj['user']))
+        UserChatHistory.objects.create(
+            user = sessionUser,
+            room = newRoom,
+            join_time = session_obj['join_time'],
+            end_time = session_obj['end_time'],
+        )
+
     pipe = r.pipeline()
     pipe.delete('room:'+roomID+':users')
     pipe.delete('room:'+roomID+':title')
     pipe.delete('room:'+roomID+':msg')
     pipe.delete('room:'+roomID+':created')
+    pipe.delete('room:'+roomID+':sessions')
     pipe.srem('rooms',roomID)
     pipe.execute()
     return HttpResponse(status=200)

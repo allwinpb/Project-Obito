@@ -8,3 +8,5 @@ room:<***>:title --> title of the room with id <***>
 room:<***>:msg --> list of json strings denoting messages in that room
 
 room:<***>:created --> time when room was created
+
+room:<***>:sessions --> JSON encoded session objects which marks how much time each user spent in the room

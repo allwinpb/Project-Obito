@@ -88,12 +88,17 @@ io.sockets.on('connection', function(socket){
 		//TODO: Send user chat history
 		if(userObj.usesFB==true){
 			console.log('Sending info : '+userObj.userObj.id);
-			bridge.post('http://localhost:8000/update/session/',{
-				'user':userObj.userObj.id,
-				'id':room,
-				'join_time': time_join,
-				'end_time':time_end
-			},function(a,b,c){});
+			// bridge.post('http://localhost:8000/update/session/',{
+			// 	'user':userObj.userObj.id,
+			// 	'id':room,
+			// 	'join_time': time_join,
+			// 	'end_time':time_end
+			// },function(a,b,c){});
+			var session = {};
+			session.user = userObj.userObj.id;
+			session.join_time = time_join;
+			session.end_time = time_end;
+			client.sadd("room:"+room+":sessions",JSON.stringify(session));
 		}
 		socket.leave(room);
 		client.srem("room:"+room+":users",name,function(){
