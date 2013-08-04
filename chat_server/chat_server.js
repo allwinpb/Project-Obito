@@ -4,7 +4,7 @@ var io = require('socket.io').listen(app);
 var redis = require('redis');
 var client = redis.createClient();
 
-var bridge = require('request');
+var bridge = require('needle');
 
 io.sockets.on('connection', function(socket){
 	var room = null;
