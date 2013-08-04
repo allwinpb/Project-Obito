@@ -37,6 +37,7 @@ def AddUser(request):
     (obj, created) = User.objects.get_or_create(user_id=request.POST['id'], name=request.POST['name'], join_date=timezone.now(), last_visited=timezone.now())
     return HttpResponse(status=204)
 
+@csrf_exempt
 def UserChatCreator(request):
     user_key = User.objects.get(user_id=request.POST['user'])
     room_key = Room.objects.get(room_id=base62_decode(str(request.POST['id'])))
@@ -53,6 +54,7 @@ def RoomCreator(request):
     r.sadd('rooms',newID)
     r.set('room:'+newID+':created',timezone.now())
     return redirect('/rooms/'+newID,permanent=False)
+
 def RoomServer(request,room_id):
     return render_to_response('room.html',{'roomID':room_id})
 
