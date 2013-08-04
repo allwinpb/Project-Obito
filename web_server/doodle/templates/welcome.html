@@ -7,12 +7,27 @@
 	<!-- CSS links -->
 	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,100,200" rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<!-- Typer.js -->
+	<script type = "text/javascript"></script>
+	<script type = "text/javascript">
+	
+		window.onload = function(){
+			String.prototype.rightChars=function(e){if(e<=0){return""}else if(e>this.length){return this}else{return this.substring(this.length,this.length-e)}};(function(e){var t={highlightSpeed:20,typeSpeed:100,clearDelay:500,typeDelay:200,clearOnHighlight:true,typerDataAttr:"data-typer-targets",typerInterval:2e3},n,r,i,s,o,u,a,f,l,c,h,p,d;o=function(t,n){if(t==="rgba(0, 0, 0, 0)"){t="rgb(255, 255, 255)"}return e("<span></span>").css("color",t).css("background-color",n)};l=function(e){return!isNaN(parseFloat(e))&&isFinite(e)};f=function(e){e.removeData(["typePosition","highlightPosition","leftStop","rightStop","primaryColor","backgroundColor","text","typing"])};s=function(e){var t=e.data("text"),n=e.data("oldLeft"),r=e.data("oldRight");if(!t||t.length===0){f(e);return}e.text(n+t.charAt(0)+r).data({oldLeft:n+t.charAt(0),text:t.substring(1)});setTimeout(function(){s(e)},p())};r=function(e){e.find("span").remove();setTimeout(function(){s(e)},a())};n=function(e){var t=e.data("highlightPosition"),i,s,a;if(!l(t)){t=e.data("rightStop")+1}if(t<=e.data("leftStop")){setTimeout(function(){r(e)},u());return}i=e.text().substring(0,t-1);s=e.text().substring(t-1,e.data("rightStop")+1);a=e.text().substring(e.data("rightStop")+1);e.html(i).append(o(e.data("backgroundColor"),e.data("primaryColor")).append(s)).append(a);e.data("highlightPosition",t-1);setTimeout(function(){return n(e)},h())};c=function(t){var n;if(t.data("typing")){return}try{n=JSON.parse(t.attr(e.typer.options.typerDataAttr)).targets}catch(r){}if(typeof n==="undefined"){n=e.map(t.attr(e.typer.options.typerDataAttr).split(","),function(t){return e.trim(t)})}t.typeTo(n[Math.floor(Math.random()*n.length)])};e.typer=function(){return{options:t}}();e.extend(e.typer,{options:t});e.fn.typer=function(){var t=e(this);return t.each(function(){var t=e(this);if(typeof t.attr(e.typer.options.typerDataAttr)==="undefined"){return}c(t);setInterval(function(){c(t)},d())})};e.fn.typeTo=function(t){var r=e(this),i=r.text(),s=0,o=0;if(i===t){console.log("Our strings our equal, nothing to type");return r}if(i!==r.html()){console.error("Typer does not work on elements with child elements.");return r}r.data("typing",true);while(i.charAt(s)===t.charAt(s)){s++}while(i.rightChars(o)===t.rightChars(o)){o++}t=t.substring(s,t.length-o+1);r.data({oldLeft:i.substring(0,s),oldRight:i.rightChars(o-1),leftStop:s,rightStop:i.length-o,primaryColor:r.css("color"),backgroundColor:r.css("background-color"),text:t});n(r);return r};h=function(){return e.typer.options.highlightSpeed};p=function(){return e.typer.options.typeSpeed},u=function(){return e.typer.options.clearDelay},a=function(){return e.typer.options.typeDelay};d=function(){return e.typer.options.typerInterval}})(jQuery) 
+			$('[data-typer-targets]').typer();
+			document.getElementById('newRoomBtn').onclick = function(e){
+				window.top.location = "/rooms/new";
+			}
+		}
+
+	</script>
 </head>
 <body>
-	<div class="navbar navbar-static-top navbar-inverse">
+	<div class="navbar navbar-static-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand" href="http://192.241.196.61:8000">Project Obito</a>
+				<a class="brand" href="http://192.241.196.61:8000" style = "font: normal 'Roboto', sans-serif;font-weight: 400;">Project Obito</a>
 				<ul class="nav pull-right nav-user-controls">
 					<li id="anon-session">
 						<a href="#">
@@ -31,30 +46,39 @@
 			</div>
 		</div>
 	</div>
-	<div class="hero-unit" style="background-image: url('/static/img/bg.jpg');">
-		<div class="container">
-			<div class="pull-left">
-				<h1>Let's chat!</h1>
-				<p class="lead">or draw.. it's up to you. Really.</p>
+	<div class = "container" id="mainBody" style = "height:595px;" >
+		<div class = "row text-center" id="chatButtons" style = "margin-top:60px;">
+			<div class = "span12" style = "font: normal 60px 'Roboto', sans-serif;font-weight: 100;">
+				Let's <span data-typer-targets='doodle.,chat.,doodle and chat.,chat for free.,doodle for free.'>chat.</span>
 			</div>
-			<div class="pull-right">
-				<a href="/rooms/new" class="btn btn-large btn-success">Try now! No account required</a>
+		</div>
+		<div class = "row text-center" style = "margin-top:100px;">
+			<div class = "span4 offset4" >
+				<button class="btn-large btn-warning install" id ="newRoomBtn" style=" font-size:30px; width:100%;">Create a room!</button><br>
+				<span style = "font: normal 10px 'Roboto', sans-serif;font-weight: 400;">(It's completely free and doesn't even require an account!)</span>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 		<div class="row">
+			<hr>
 			<div class="span4 text-center">
-				<h4>Purely on the browser!</h4>
-				<p>No need to download anything. Just open the webpage!</p>
+				<h4 style = "font: normal 30px 'Roboto', sans-serif;font-weight: 400;">Downloads?</h4>
+				<p style = "font: normal 15px 'Roboto', sans-serif;font-weight: 400;">What downloads? Project Obito leverages the power of HTML5 and Javascript to deliver an unrivaled chatting experience within your Web Browser!</p>
 			</div>
 			<div class="span4 text-center">
-				<h4>Drawing support</h4>
-				<p>The <strong>ONLY</strong> webchat service which supports doodle messages!</p>
+				<h4 style = "font: normal 30px 'Roboto', sans-serif;font-weight: 400;">Just Chat?</h4>
+				<p style = "font: normal 15px 'Roboto', sans-serif;font-weight: 400;">Project Obito is more than just chat, we provide you with a really fun social-doodling experience!</p>
 			</div>
 			<div class="span4 text-center">
-				<h4>No Account!</h4>
-				<p>Anyone can start an anonymous chat room and enjoy the full extend of our service. You can also optionally choose to link your facebook account to keep a history of all chats</p>
+				<h4 style = "font: normal 30px 'Roboto', sans-serif;font-weight: 400;">Registration?</h4>
+				<p style = "font: normal 15px 'Roboto', sans-serif;font-weight: 400;">Nope, there is none. You can start your Anonymous Chatroom and still enjoy all the awesome features Obito has to offer. But you can also login with facebook and read through those old chat records.</p>
+			</div>
+		</div>
+		<div class="row">
+			<hr>
+			<div class="span4 offset4 text-center">
+				<p style = "font: normal 12px 'Roboto', sans-serif;font-weight: 400;">Designed and developed by Allwin.</p>
 			</div>
 		</div>
 	</div>
