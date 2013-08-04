@@ -107,7 +107,7 @@ io.sockets.on('connection', function(socket){
 					console.log('Disassembling ROOM('+room+')...');
 					//send all the shit to sql for archiving
 					//django should delete all the associated room keys
-					bridge.post('http://localhost:8000/update/',{'id':room},function(error,resp,body){});
+					bridge.post('http://localhost:8000/update',{'id':room},function(error,resp,body){});
 				}
 			});
 		});
