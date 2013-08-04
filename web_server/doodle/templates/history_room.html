@@ -47,16 +47,16 @@
 						{% elif msg.author == user %}
 							<li class="chat-user">
 								<small>{{ msg.author }} :</small>
-								{% if msg.type == "text" %}
+								{% if msg.msg_type == "text" %}
 									<p> {{ msg.content }} </p>
 								{% else %}
-									<canvas id="doodle" onload = "CanvasOutput(msg.content)"></canvas>
+									<canvas id="doodle" onload = "CanvasOutput({{msg.content}})"></canvas>
 								{% endif %}
 							</li><br>
 						{% else %}
 							<li class="chat-other">
 								<small>{{ msg.author }} :</small>
-								{% if msg.type == "text" %}
+								{% if msg.msg_type == "text" %}
 									<p> {{ msg.content }} </p>
 								{% else %}
 									<canvas id="doodle" onload = "CanvasOutput(msg.content)"></canvas>
