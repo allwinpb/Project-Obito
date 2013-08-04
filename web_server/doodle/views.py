@@ -27,7 +27,7 @@ def ChatHistoryIndex(request, history_id):
     for message in global_chat_history:
         if message.room == room and message.timestamp < end and message.timestamp > join:
             user_messages.append(message)
-    return render(request, 'history_room.html', {'messages': user_messages, 'user': user_chat_history.user})
+    return render(request, 'history_room.html', {'messages': user_messages, 'user': user_chat_history.user.name})
 
 @csrf_exempt
 def AddUser(request):
