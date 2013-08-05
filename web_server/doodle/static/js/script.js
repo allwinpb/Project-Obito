@@ -184,8 +184,9 @@ function prepareCanvasOutput(id,msg){
 	outputCanvas.renderAll();
 }
 
-function CanvasOutput(msg){
-	var outputCanvas = new fabric.StaticCanvas();
+function CanvasOutput(){
+	var msg = document.getElementById("doodle").value;
+	var outputCanvas = new fabric.StaticCanvas(msg);
 	outputCanvas.setWidth(msg.width);
 	outputCanvas.setHeight(msg.height);
 	outputCanvas.loadFromJSON(msg.content);
