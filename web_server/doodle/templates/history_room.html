@@ -45,7 +45,7 @@
 						{% if msg.author == "SERVER" %}
 							<li class="chat-server">-- {{ msg.content }} --</li><br>
 						{% elif msg.author == user %}
-							<li class="chat-user">
+							<li class="chat-user chat-msg">
 								<small>{{ msg.author }} :</small>
 								{% if msg.msg_type == "text" %}
 									<p> {{ msg.content }} </p>
@@ -54,7 +54,7 @@
 								{% endif %}
 							</li><br>
 						{% else %}
-							<li class="chat-other">
+							<li class="chat-other chat-msg">
 								<small>{{ msg.author }} :</small>
 								{% if msg.msg_type == "text" %}
 									<p> {{ msg.content }} </p>
