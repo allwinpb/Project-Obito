@@ -22,5 +22,5 @@ redis
 
 File Structure
 ==============
-chat_server : node.js application to run the socket.io based chat backend
-web_server_prototype: tornado based python server to serve pages as required (no user accounts)
+chat_server : node.js application to run the socket.io based chat backend   
+web_server_prototype: tornado based python server to serve pages as required (no user accounts)   
