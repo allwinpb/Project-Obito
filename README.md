@@ -16,8 +16,8 @@ Though creating a user account will enable the end user to keep a chat history, 
 
 Dependencies
 ============
-python > tornado
-node.js > socket.io
+python > tornado   
+node.js > socket.io   
 redis
 
 File Structure
